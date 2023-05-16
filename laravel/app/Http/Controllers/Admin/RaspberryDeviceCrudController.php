@@ -64,7 +64,7 @@ class RaspberryDeviceCrudController extends CrudController
         CRUD::field('model');
         CRUD::field('last_ip');
         CRUD::field('email_notification');
-        CRUD::field('gpio_settings');
+        //CRUD::field('gpio_settings');
 
         for ($x = 0; $x <= 27; $x++) {
             

@@ -55,26 +55,25 @@ class process_gpio_queue extends Command
             $this_raspberry->{'gpio_' . $gpio_command->gpio_port . '_status'} = $gpio_command->command;
             $this_raspberry->last_ip= request()->ip();
 
-            $this_raspberry->save();
-            
-            sleep($delay);
+            if (env('GPIO_AVAILABLE')){
+                $pin = $gpio->getOutputPin($gpio_command->gpio_port);
+                sleep(5);                
+                $pin->setValue(PinInterface::VALUE_HIGH);
+            }else{
+                $this->info('Skipping GPIO action');
 
-            // $pin = $gpio->getOutputPin($gpio_command->port);
-            /*switch ($gpio_command->command){
-                case "on":
-             //       $pin->setValue(PinInterface::VALUE_LOW);
-                    break;
-                case "off":
-                //    $pin->setValue(PinInterface::VALUE_HIGH);
-                    break;
-            }*/
-        }
-        
+            }
+
+            $this_raspberry->save();                      
+
+        }        
 
         if ($commands->count() == 0) {
             $this->info('No commands queued!');
         }
+
         $this->info('wait -> ' . $delay);
+
     }
 
     /*
