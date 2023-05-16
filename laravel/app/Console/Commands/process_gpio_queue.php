@@ -35,6 +35,7 @@ class process_gpio_queue extends Command
 
     private function every_raise()
     {
+        $delay = 30;
         $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();
 
         // Create a GPIO object
@@ -43,16 +44,19 @@ class process_gpio_queue extends Command
         // get pending records on server to process
         $commands = \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
 
+        
+
         foreach ($commands as $gpio_command) {
-            $delay = 5;
+            
             $this->info('Executing ->  Port: ' . $gpio_command->gpio_port);
-            $this->info('mantener -> ' . $delay);
+            
             $gpio_command->executed = true;
             $gpio_command->save();
             $this_raspberry->{'gpio_' . $gpio_command->gpio_port . '_status'} = $gpio_command->command;
             $this_raspberry->last_ip= request()->ip();
 
             $this_raspberry->save();
+            
             sleep($delay);
 
             // $pin = $gpio->getOutputPin($gpio_command->port);
@@ -65,10 +69,12 @@ class process_gpio_queue extends Command
                     break;
             }*/
         }
+        
 
         if ($commands->count() == 0) {
             $this->info('No commands queued!');
         }
+        $this->info('wait -> ' . $delay);
     }
 
     /*

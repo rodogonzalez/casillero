@@ -40,6 +40,8 @@ class ProcessQueueCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('raspberry_device_id');
+
+
         CRUD::column('gpio_port');
         CRUD::column('command');
         
@@ -64,7 +66,25 @@ class ProcessQueueCrudController extends CrudController
     {
         CRUD::setValidation(ProcessQueueRequest::class);
 
-        CRUD::field('raspberry_device_id');
+        
+
+        CRUD::addField(
+        [  // Select
+            'label'     => "Device",
+            'type'      => 'select',
+            'name'      => 'raspberry_device_id', // the db column for the foreign key        
+                     
+            'model'     => "App\Models\RaspberryDevice", // related model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+         
+            // optional - force the related options to be a custom query, instead of all();
+            'options'   => (function ($query) {
+                 return $query->orderBy('id', 'ASC')->get();
+             }), 
+            ]);
+
+
+
         CRUD::field('gpio_port');
         CRUD::addField([
             'name'    => "command",

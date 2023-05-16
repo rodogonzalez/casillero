@@ -42,37 +42,7 @@ class RaspberryDeviceCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('model');
         CRUD::column('last_ip');
-        CRUD::column('email_notification');
-        CRUD::column('gpio_settings');
-        CRUD::column('gpio_0_status');
-        CRUD::column('gpio_1_status');
-        CRUD::column('gpio_2_status');
-        CRUD::column('gpio_3_status');
-        CRUD::column('gpio_4_status');
-        CRUD::column('gpio_5_status');
-        CRUD::column('gpio_6_status');
-        CRUD::column('gpio_7_status');
-        CRUD::column('gpio_8_status');
-        CRUD::column('gpio_9_status');
-        CRUD::column('gpio_10_status');
-        CRUD::column('gpio_11_status');
-        CRUD::column('gpio_12_status');
-        CRUD::column('gpio_13_status');
-        CRUD::column('gpio_14_status');
-        CRUD::column('gpio_15_status');
-        CRUD::column('gpio_16_status');
-        CRUD::column('gpio_17_status');
-        CRUD::column('gpio_18_status');
-        CRUD::column('gpio_19_status');
-        CRUD::column('gpio_20_status');
-        CRUD::column('gpio_21_status');
-        CRUD::column('gpio_22_status');
-        CRUD::column('gpio_23_status');
-        CRUD::column('gpio_24_status');
-        CRUD::column('gpio_25_status');
-        CRUD::column('gpio_26_status');
-        CRUD::column('gpio_27_status');
-
+       
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
