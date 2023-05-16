@@ -42,7 +42,8 @@ class process_gpio_queue extends Command
         $gpio = new GPIO();
 
         // get pending records on server to process
-        $commands = \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
+        //$commands = \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
+        $commands = \App\Models\ProcessQueue::where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
 
         
 
