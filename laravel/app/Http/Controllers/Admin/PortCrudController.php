@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProcessQueueRequest;
+use App\Http\Requests\PortRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ProcessQueueCrudController
+ * Class PortCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ProcessQueueCrudController extends CrudController
+class PortCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class ProcessQueueCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\ProcessQueue::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/process-queue');
-        CRUD::setEntityNameStrings('process queue', 'process queues');
+        CRUD::setModel(\App\Models\Port::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/port');
+        CRUD::setEntityNameStrings('port', 'ports');
     }
 
     /**
@@ -39,13 +39,8 @@ class ProcessQueueCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('raspberry_device_id');
-        CRUD::column('gpio_port');
-        CRUD::column('command');
-        
-        CRUD::column('executed');
-
-        
+        CRUD::column('name');
+        CRUD::column('value');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -62,20 +57,10 @@ class ProcessQueueCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(ProcessQueueRequest::class);
+        CRUD::setValidation(PortRequest::class);
 
-        CRUD::field('raspberry_device_id');
-        CRUD::field('gpio_port');
-        CRUD::addField([
-            'name'    => "command",
-            'type'    => 'enum',
-            /*'options' => [
-                'available',
-                'in-use',
-                'out-of-service'
-            ]*/
-        ]);
-        CRUD::field('executed');
+        CRUD::field('name');
+        CRUD::field('value');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

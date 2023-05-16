@@ -1,8 +1,9 @@
 {{-- This file is used to store sidebar items, inside the Backpack admin panel --}}
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-home nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('log') }}'><i class='nav-icon la la-terminal'></i> Logs</a></li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-question"></i> Users</a></li>
+
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('raspberry-device') }}"><i class="nav-icon la la-question"></i>Terminals</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('process-queue') }}"><i class="nav-icon la la-question"></i> Process Queue</a></li>
 
 <!-- Users, Roles, Permissions -->
 <li class="nav-item nav-dropdown">
@@ -13,5 +14,6 @@
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('permission') }}"><i class="nav-icon la la-key"></i> <span>Permissions</span></a></li>
     </ul>
 </li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('raspberry-device') }}"><i class="nav-icon la la-question"></i> Raspberry devices</a></li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('process-queue') }}"><i class="nav-icon la la-question"></i> Process queues</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('log') }}'><i class='nav-icon la la-terminal'></i> Logs</a></li>
+
+

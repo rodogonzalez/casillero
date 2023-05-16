@@ -16,6 +16,7 @@ class ProcessQueue extends Model
     protected $fillable = [
             'raspberry_device_id',
             'gpio_port',
+            'command',
             'executed',             
         ];
 }
