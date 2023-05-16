@@ -36,9 +36,7 @@ class process_gpio_queue extends Command
     private function every_raise()
     {
         $delay          = 30;
-        $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();
-
-        $this->turn_all_off();
+        $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();        
 
         // Create a GPIO object
         $gpio = new GPIO();
@@ -135,6 +133,7 @@ class process_gpio_queue extends Command
     {
         // this command is executed each minute, so to keep it executing each 2 seconds , it will be using the command sleep to
         // await , the execution of this command will take around 1 minute
+        $this->turn_all_off();
 
         while (1 != 2) {
             $this->every_raise();
