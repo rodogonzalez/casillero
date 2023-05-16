@@ -73,17 +73,19 @@ class process_gpio_queue extends Command
         $this->info('wait -> ' . $delay);
     }
 
-    
-    private function turn_all_off(){
+    private function turn_all_off()
+    {
         // Create a GPIO object
-        $gpio = new GPIO();  
+        $gpio = new GPIO();
 
-        for($x=0; $x<=27; $x++){
-            $pin = $gpio->getOutputPin($x);
-            $pin->setValue(PinInterface::VALUE_HIGH);            
+        for ($x = 0; $x <= 27; $x++) {
+            if (env('GPIO_AVAILABLE')) {
+                $pin = $gpio->getOutputPin($x);
+                $pin->setValue(PinInterface::VALUE_LOW);
+            }
         }
     }
-/*
+    /*
 
     private function get_port_status(){
 
