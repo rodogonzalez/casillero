@@ -80,13 +80,19 @@ class process_gpio_queue extends Command
 
         for($x=0; $x<=27; $x++){
             if (env('GPIO_AVAILABLE')) {
-                $pin = $gpio->getOutputPin($x);
-                $pin->setValue(PinInterface::VALUE_HIGH);
-                $pin->setValue(PinInterface::VALUE_LOW);
-                $pin->setValue(PinInterface::VALUE_HIGH);
-                
+                $pin = $gpio->getOutputPin($x);         
+                $pin->setValue(PinInterface::VALUE_LOW);                               
             }
             
+        }
+
+        sleep(10);
+
+        for($x=0; $x<=27; $x++){
+            if (env('GPIO_AVAILABLE')) {
+                $pin = $gpio->getOutputPin($x);
+                $pin->setValue(PinInterface::VALUE_HIGH);                        
+            }            
         }
     }
 /*
