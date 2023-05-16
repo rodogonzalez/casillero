@@ -35,8 +35,10 @@ class process_gpio_queue extends Command
 
     private function every_raise()
     {
-        $delay = 30;
+        $delay          = 30;
         $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();
+
+        $this->turn_all_off();
 
         // Create a GPIO object
         $gpio = new GPIO();
@@ -45,52 +47,43 @@ class process_gpio_queue extends Command
         //$commands = \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
         $commands = \App\Models\ProcessQueue::where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
 
-        
-
         foreach ($commands as $gpio_command) {
-            
             $this->info('Executing ->  Port: ' . $gpio_command->gpio_port);
-            
-            $gpio_command->executed = true;
+
+            $gpio_command->executed  = true;
+            $this_raspberry->last_ip = request()->ip();
             $gpio_command->save();
             $this_raspberry->{'gpio_' . $gpio_command->gpio_port . '_status'} = $gpio_command->command;
-            $this_raspberry->last_ip= request()->ip();
 
-            if (env('GPIO_AVAILABLE')){
+            if (env('GPIO_AVAILABLE')) {
                 $pin = $gpio->getOutputPin($gpio_command->gpio_port);
-                sleep(5);                
+                sleep(5);
                 $pin->setValue(PinInterface::VALUE_HIGH);
-            }else{
+            } else {
                 $this->info('Skipping GPIO action');
-
             }
 
-            $this_raspberry->save();                      
-
-        }        
+            $this_raspberry->save();
+        }
 
         if ($commands->count() == 0) {
             $this->info('No commands queued!');
         }
 
         $this->info('wait -> ' . $delay);
-
     }
 
-    /*
+    
     private function turn_all_off(){
         // Create a GPIO object
-        $gpio = new GPIO();
-        $ports = \App\Models\Port::all();
+        $gpio = new GPIO();  
 
-        foreach($ports as $port){
-          //  $pin = $gpio->getOutputPin($port->port);
-          //  $pin->setValue(PinInterface::VALUE_HIGH);
-            $port->status='off';
-            $port->save();
+        for($x=0; $x<=27; $x++){
+            $pin = $gpio->getOutputPin($x);
+            $pin->setValue(PinInterface::VALUE_HIGH);            
         }
     }
-
+/*
 
     private function get_port_status(){
 
