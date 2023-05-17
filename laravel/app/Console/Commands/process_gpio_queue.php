@@ -153,7 +153,7 @@ class process_gpio_queue extends Command
 
         while (1 != 2) {
             $this->every_raise();
-            sleep(15);
+            sleep(30);
         }
     }
 }
