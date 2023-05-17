@@ -42,8 +42,8 @@ class process_gpio_queue extends Command
         $gpio = new GPIO();
 
         // get pending records on server to process
-        $commands = \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
-        //$commands = \App\Models\ProcessQueue::where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
+        //$commands = \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
+        $commands = \App\Models\ProcessQueue::where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
 
         foreach ($commands as $gpio_command) {
             $this->info('Executing ->  Port: ' . $gpio_command->gpio_port);
@@ -124,11 +124,7 @@ class process_gpio_queue extends Command
     }
 */
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
+
     public function handle()
     {
         // this command is executed each minute, so to keep it executing each 2 seconds , it will be using the command sleep to
