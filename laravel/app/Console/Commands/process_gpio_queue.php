@@ -36,6 +36,8 @@ class process_gpio_queue extends Command
 
     private function every_raise()
     {
+        ini_set('max_execution_time', 2500);
+
         $delay = 15;
         $url   = env('APP_URL') . '/device-feed/' . env('RASPBERRY_DEVICE_ID') . "?md=" . md5(now());
         $this->info('...........');
