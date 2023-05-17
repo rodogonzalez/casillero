@@ -153,7 +153,20 @@ class process_gpio_queue extends Command
 
         while (1 != 2) {
             $this->every_raise();
-            sleep(30);
+
+            $bar = $this->output->createProgressBar(30);
+ 
+            $bar->start();
+             
+            for ($x=0; $x<=20; $x++) {
+                sleep(1);
+             
+                $bar->advance();
+            }
+             
+            $bar->finish();
+
+            
         }
     }
 }
