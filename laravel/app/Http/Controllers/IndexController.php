@@ -174,7 +174,7 @@ class IndexController extends Controller
             ]
         );
 
-        sleep(15);
+        
 
         $unlock_link = env('APP_URL') . '/unlock/' . md5($LockerOrder->id);
 
