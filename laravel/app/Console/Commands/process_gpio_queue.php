@@ -35,7 +35,7 @@ class process_gpio_queue extends Command
 
     private function every_raise()
     {
-        $delay          = 30;
+        $delay          = 15;
         $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();        
 
         // Create a GPIO object

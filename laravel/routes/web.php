@@ -15,7 +15,7 @@ use App\Http\Controllers\IndexController;
 */
 
 Route::get('/', function () {
-    return redirect('/admin');
+    return redirect('/request-locker/' .  env('RASPBERRY_DEVICE_ID'));
 
 });
 Route::get('/request-locker/{device_id}', [IndexController::class, 'request_locker'] );

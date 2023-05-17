@@ -7,8 +7,8 @@ use App\Models\ProcessQueue;
 use App\Models\RaspberryDevice;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
-use Order;
 use Illuminate\Http\Request;
+use Order;
 
 class IndexController extends Controller
 {
@@ -37,9 +37,9 @@ class IndexController extends Controller
         foreach ($locker_ports as $locker_port => $label) {
             $locker_current_status = $RaspberryDevice->{"gpio_{$locker_port}_status"};
 
-            if (in_array($locker_current_status, ['available', '', 'Available', null, 0])) {
-                $ports_availables[] = [$locker_port => $label];
-            }
+            //if (in_array($locker_current_status, ['available', '', 'Available', null, 0])) {
+            $ports_availables[] = [$locker_port => ['caption' => $label, 'status' => $locker_current_status]];
+            //}
         }
 
         return view('device_user_view', ['device' => $RaspberryDevice, 'lockers' => $ports_availables]);
@@ -104,7 +104,7 @@ class IndexController extends Controller
 */
 
         $data = [
-            'payment_method' => '´bacs',
+            'payment_method'       => '´bacs',
             'payment_method_title' => 'Direct Bank Transfer',
             'set_paid'             => true,
             //'payment_method_title' => 'Pay with crypto',
@@ -153,19 +153,24 @@ class IndexController extends Controller
             ]
         );
 
+        sleep(15);
+
         $unlock_link = env('APP_URL') . '/unlock/' . md5($LockerOrder->id);
 
         $qrcode = (new QRCode($options))->render($unlock_link);
 
         return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode]);
     }
-    public function unlock_order($order_id){
 
+    public function unlock_order($order_id)
+    {
         $LockerOrder = LockerOrder::whereRaw("md5(id) =  '{$order_id}'")->first();
 
         //dd($LockerOrder);
-
-        $LockerOrder->closening_paid_at= now();
+        if ($LockerOrder->closening_paid_at != null) {
+            abort(404);
+        }
+        $LockerOrder->closening_paid_at = now();
         $LockerOrder->save();
 
         $ProcessQueue = ProcessQueue::create([
@@ -175,6 +180,6 @@ class IndexController extends Controller
             'executed'            => 0
         ]);
 
-
+        return view('locker.order.closed', []);
     }
 }

@@ -3,10 +3,10 @@
     <span>{{$device->name}}</span>
     <h1>Lockers Available</h1>
     <div class="row">
-    @foreach ($lockers as $locker)        
+    @foreach ($lockers as $locker_box)        
         <div class='col-4 locker_skin'>            
-            @foreach ($locker as $locker_port =>$caption)                
-                <a href="/start-locker-request/{{$device->id}}/{{$locker_port}}" class="btn button"> LOCKER [ {{$caption}} ] DISPONIBLE</a>
+            @foreach ($locker_box as $locker_port =>$data)                
+                <a href="/start-locker-request/{{$device->id}}/{{$locker_port}}" class="btn button">  [ {{$data['caption']}} {{$data['status']}} ]</a>
             @endforeach
         </div>
     @endforeach
