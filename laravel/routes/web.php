@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/admin');
+
 });
+Route::get('/request-locker/{$device_id}', [IndexController::class, 'request_locker'] );
+Route::get('/start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] );
+
+

@@ -9,6 +9,8 @@
         "backpack/crud": "^5.6",
         "backpack/logmanager": "^4.0",
         "backpack/permissionmanager": "^6.0",
+        "chillerlan/php-qrcode": "^4.3",
+        "codexshaper/laravel-woocommerce": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
