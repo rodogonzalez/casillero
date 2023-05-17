@@ -38,6 +38,7 @@ class process_gpio_queue extends Command
     {
         $delay = 15;
         $url   = env('APP_URL') . '/device-feed/' . env('RASPBERRY_DEVICE_ID');
+        $this->info('...........');
         $this->info('connecting...  ' . $url);
         $response = Http::accept('application/json')->get($url, []);
         $commands = json_decode($response->getBody(), true);
