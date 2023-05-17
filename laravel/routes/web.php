@@ -18,7 +18,8 @@ Route::get('/', function () {
     return redirect('/admin');
 
 });
-Route::get('/request-locker/{$device_id}', [IndexController::class, 'request_locker'] );
+Route::get('/request-locker/{device_id}', [IndexController::class, 'request_locker'] );
 Route::get('/start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] );
+Route::get('/unlock/{order_id}', [IndexController::class, 'unlock_order'] );
 
 

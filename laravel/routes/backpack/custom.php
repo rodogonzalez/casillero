@@ -24,4 +24,5 @@ Route::group([
     
     
     Route::crud('raspberry-device', 'RaspberryDeviceCrudController');
+    Route::crud('locker-order', 'LockerOrderCrudController');
 }); // this should be the absolute last line of this file
