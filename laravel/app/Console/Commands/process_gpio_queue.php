@@ -82,7 +82,9 @@ class process_gpio_queue extends Command
             $this_raspberry->save();
             
             $url   = env('APP_URL') . '/reset-device-feed/' . env('RASPBERRY_DEVICE_ID');
+
             $this->info('resetting cache ' . $url);
+            sleep(10);
             Http::get($url, []);
         }
 
