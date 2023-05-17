@@ -9,6 +9,8 @@ use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 use Illuminate\Http\Request;
 use Order;
+use Illuminate\Support\Facades\Cache;
+
 
 class IndexController extends Controller
 {
@@ -51,6 +53,25 @@ class IndexController extends Controller
             -. if payment successs then come back and open the locker,
 
         */
+    }
+
+    public function reset_device_feed($device_id){
+        Cache::forget('device_' . $device_id);
+    }
+
+    public function get_device_feed($device_id){
+
+            //return json_encode);
+        
+
+
+            $commands = Cache::rememberForever('device_' . $device_id, function () {
+                return  \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();
+                ;
+            });
+            
+            return response()
+            ->json($commands);
     }
 
     public function start_order($device_id, $port)
@@ -158,9 +179,13 @@ class IndexController extends Controller
         $unlock_link = env('APP_URL') . '/unlock/' . md5($LockerOrder->id);
 
         $qrcode = (new QRCode($options))->render($unlock_link);
+        
+        Cache::forget('device_' . $device_id);
+
 
         return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode]);
     }
+
 
     public function unlock_order($order_id)
     {
