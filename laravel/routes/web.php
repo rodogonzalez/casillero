@@ -15,11 +15,13 @@ use App\Http\Controllers\IndexController;
 */
 
 Route::get('/', function () {
-    return redirect('/request-locker/' .  env('RASPBERRY_DEVICE_ID'));
+    return redirect('request-locker/' .  env('RASPBERRY_DEVICE_ID'));
 
 });
-Route::get('/request-locker/{device_id}', [IndexController::class, 'request_locker'] );
-Route::get('/start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] );
-Route::get('/unlock/{order_id}', [IndexController::class, 'unlock_order'] );
+Route::get('request-locker/{device_id}', [IndexController::class, 'request_locker'] );
+Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] );
+Route::get('unlock/{order_id}', [IndexController::class, 'unlock_order'] );
 
+Route::get('device-feed/{device_id}', [IndexController::class, 'get_device_feed'] );
 
+Route::get('reset-device-feed/{device_id}', [IndexController::class, 'reset_device_feed'] );
