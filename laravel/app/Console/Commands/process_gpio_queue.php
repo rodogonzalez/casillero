@@ -37,7 +37,7 @@ class process_gpio_queue extends Command
     private function every_raise()
     {
         $delay = 15;
-        $url   = env('APP_URL') . '/device-feed/' . env('RASPBERRY_DEVICE_ID');
+        $url   = env('APP_URL') . '/device-feed/' . env('RASPBERRY_DEVICE_ID') . "?md=" . md5(now());
         $this->info('...........');
         $this->info('connecting...  ' . $url);
         $response = Http::accept('application/json')->get($url, []);
@@ -47,7 +47,6 @@ class process_gpio_queue extends Command
         $reset_cache = false;
 
         foreach ($commands as $gpio_command) {
-            $this->info('Executing ->  Port: ' . $gpio_command['gpio_port']);
 
             if (env('GPIO_AVAILABLE')) {
                 $pin = $gpio->getOutputPin($gpio_command['gpio_port']);
@@ -62,7 +61,7 @@ class process_gpio_queue extends Command
             $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();
 
             foreach ($commands as $gpio_command) {
-                $this->info('turning off ->  Port: ' . $gpio_command['gpio_port']);
+                $this->info('Command on Port: ' . $gpio_command['gpio_port'] . ' '. $gpio_command['command']);
 
                 if (env('GPIO_AVAILABLE')) {
                     $pin = $gpio->getOutputPin($gpio_command['gpio_port']);
@@ -83,6 +82,7 @@ class process_gpio_queue extends Command
             $this_raspberry->save();
             
             $url   = env('APP_URL') . '/reset-device-feed/' . env('RASPBERRY_DEVICE_ID');
+            $this->info('resetting cache ' . $url);
             Http::get($url, []);
         }
 
@@ -107,7 +107,7 @@ class process_gpio_queue extends Command
             }
         }
 
-        sleep(10);
+        sleep(2);
 
         for ($x = 0; $x <= 27; $x++) {
             if (env('GPIO_AVAILABLE')) {
@@ -155,11 +155,13 @@ class process_gpio_queue extends Command
         while (1 != 2) {
             $this->every_raise();
 
-            $bar = $this->output->createProgressBar(30);
+            $second_delay=10;
+
+            $bar = $this->output->createProgressBar($second_delay);
  
             $bar->start();
              
-            for ($x=0; $x<=20; $x++) {
+            for ($x=0; $x<=$second_delay; $x++) {
                 sleep(1);
              
                 $bar->advance();

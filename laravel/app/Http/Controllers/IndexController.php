@@ -204,7 +204,7 @@ class IndexController extends Controller
             'command'             => 'available',
             'executed'            => 0
         ]);
-
+        Cache::forget('device_' . $LockerOrder->raspberry_device_id);
         return view('locker.order.closed', []);
     }
 }
