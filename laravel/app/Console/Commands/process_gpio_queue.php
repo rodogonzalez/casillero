@@ -45,26 +45,50 @@ class process_gpio_queue extends Command
         $commands = \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
         //$commands = \App\Models\ProcessQueue::where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get();
 
+
+        foreach ($commands as $gpio_command) {
+            $this->info('Executing ->  Port: ' . $gpio_command->gpio_port);
+ 
+            if (env('GPIO_AVAILABLE')) {
+                $pin = $gpio->getOutputPin($gpio_command->gpio_port);
+                $pin->setValue(PinInterface::VALUE_LOW);
+  
+            } else {
+                $this->info('Skipping GPIO action');
+            }
+
+        }
+
+        sleep(5);
+
+
         foreach ($commands as $gpio_command) {
             $this->info('Executing ->  Port: ' . $gpio_command->gpio_port);
 
             $gpio_command->executed  = true;
             $this_raspberry->last_ip = request()->ip();
-            $gpio_command->save();
+            //$gpio_command->save();
             $this_raspberry->{'gpio_' . $gpio_command->gpio_port . '_status'} = $gpio_command->command;
 
             if (env('GPIO_AVAILABLE')) {
                 $pin = $gpio->getOutputPin($gpio_command->gpio_port);
-                $pin->setValue(PinInterface::VALUE_LOW);
-                sleep(5);
                 $pin->setValue(PinInterface::VALUE_HIGH);
             } else {
                 $this->info('Skipping GPIO action');
             }
-
-            $this_raspberry->save();
+ 
         }
 
+
+        foreach ($commands as $gpio_command) {
+            
+            $gpio_command->save();
+             
+            
+        }
+
+        $this_raspberry->save();
+        
         if ($commands->count() == 0) {
             $this->info('No commands queued!');
         }
