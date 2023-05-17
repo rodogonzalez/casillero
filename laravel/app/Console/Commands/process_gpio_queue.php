@@ -84,7 +84,7 @@ class process_gpio_queue extends Command
             $url   = env('APP_URL') . '/reset-device-feed/' . env('RASPBERRY_DEVICE_ID');
 
             $this->info('resetting cache ' . $url);
-            sleep(10);
+            sleep(15);
             Http::get($url, []);
         }
 
@@ -118,35 +118,7 @@ class process_gpio_queue extends Command
             }
         }
     }
-    /*
-
-    private function get_port_status(){
-
-
-        // Create a GPIO object
-        $gpio = new GPIO();
-
-
-        $ports = \App\Models\Port::all();
-
-
-        foreach($ports as $port){
-         //   $pin = $gpio->getOutputPin($port->port);
-            switch($port->status){
-                case "on":
-            //        $pin->setValue(PinInterface::VALUE_LOW);
-                    break;
-                case "off":
-              //      $pin->setValue(PinInterface::VALUE_HIGH);
-                    break;
-            }
-
-        }
-        $this->info('updated from db ... ' );
-
-
-    }
-*/
+    
 
     public function handle()
     {
@@ -157,7 +129,7 @@ class process_gpio_queue extends Command
         while (1 != 2) {
             $this->every_raise();
 
-            $second_delay=10;
+            $second_delay=30;
 
             $bar = $this->output->createProgressBar($second_delay);
  
