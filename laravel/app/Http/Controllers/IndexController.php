@@ -196,8 +196,9 @@ class IndexController extends Controller
             abort(404);
         }
         $LockerOrder->closening_paid_at = now();
-        sleep(30);
+        
         $LockerOrder->save();
+        sleep(20);
 
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $LockerOrder->raspberry_device_id,
