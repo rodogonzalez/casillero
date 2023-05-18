@@ -10,6 +10,7 @@ use chillerlan\QRCode\QROptions;
 use Illuminate\Http\Request;
 use Order;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\URL;
 
 
 class IndexController extends Controller
@@ -172,11 +173,10 @@ class IndexController extends Controller
                 'outputType' => QRCode::OUTPUT_MARKUP_SVG,
                 'version'    => 5,
             ]
-        );
+        );       
 
-        
-
-        $unlock_link = env('APP_URL') . '/unlock/' . md5($LockerOrder->id);
+        //$unlock_link = env('APP_URL') . ;
+        $unlock_link =URL::signedRoute('/unlock/' . md5($LockerOrder->id) );
 
         $qrcode = (new QRCode($options))->render($unlock_link);
         
