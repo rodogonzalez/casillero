@@ -8,10 +8,9 @@ use App\Models\RaspberryDevice;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 use Illuminate\Http\Request;
-use Order;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\URL;
-
+use Order;
 
 class IndexController extends Controller
 {
@@ -56,22 +55,20 @@ class IndexController extends Controller
         */
     }
 
-    public function reset_device_feed($device_id){
+    public function reset_device_feed($device_id)
+    {
         Cache::forget('device_' . $device_id);
     }
 
-    public function get_device_feed($device_id){
+    public function get_device_feed($device_id)
+    {
+        //return json_encode);
 
-            //return json_encode);
-        
+        $commands = Cache::rememberForever('device_' . $device_id, function () {
+            return \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();;
+        });
 
-
-            $commands = Cache::rememberForever('device_' . $device_id, function () {
-                return  \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();
-                ;
-            });
-            
-            return response()
+        return response()
             ->json($commands);
     }
 
@@ -173,19 +170,17 @@ class IndexController extends Controller
                 'outputType' => QRCode::OUTPUT_MARKUP_SVG,
                 'version'    => 5,
             ]
-        );       
+        );
 
         //$unlock_link = env('APP_URL') . ;
-        $unlock_link =URL::signedRoute('unlock/' . md5($LockerOrder->id) );
+        $unlock_link = URL::signedRoute('unlock', ['order_id' => md5($LockerOrder->id)]);
 
         $qrcode = (new QRCode($options))->render($unlock_link);
-        
-        Cache::forget('device_' . $device_id);
 
+        Cache::forget('device_' . $device_id);
 
         return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode]);
     }
-
 
     public function unlock_order($order_id)
     {
@@ -196,7 +191,7 @@ class IndexController extends Controller
             abort(404);
         }
         $LockerOrder->closening_paid_at = now();
-        
+
         $LockerOrder->save();
         //sleep(15);
 
@@ -207,6 +202,7 @@ class IndexController extends Controller
             'executed'            => 0
         ]);
         Cache::forget('device_' . $LockerOrder->raspberry_device_id);
-        return  response()->view('locker.order.closed')->header("Refresh", "5;url=/");
+
+        return response()->view('locker.order.closed')->header('Refresh', '5;url=/');
     }
 }
