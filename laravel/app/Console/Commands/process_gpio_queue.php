@@ -42,8 +42,8 @@ class process_gpio_queue extends Command
 
         try {
             //$url = env('APP_URL') . '/device-feed/' . env('RASPBERRY_DEVICE_ID') . '?md=' . md5(now());
-            $this->info('...........');
-            $this->info('retrieving data...  ' );
+            //$this->info('...........');
+            //$this->info('retrieving data...  ' );
             
             $commands=\App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();
             $gpio        = new GPIO();
@@ -100,7 +100,7 @@ class process_gpio_queue extends Command
 
 
     }
-
+/*
     private function every_raise()
     {
         ini_set('max_execution_time', 25000);
@@ -168,7 +168,7 @@ class process_gpio_queue extends Command
             return false;
         }
     }
-
+*/
     private function turn_all_off()
     {
         $this->info('init ... ' );
@@ -201,7 +201,7 @@ class process_gpio_queue extends Command
             $this->execute_db_connection();
 
             $second_delay = 0;
-
+/*
             $bar = $this->output->createProgressBar($second_delay);
 
             $bar->start();
@@ -212,7 +212,7 @@ class process_gpio_queue extends Command
                 $bar->advance();
             }
 
-            $bar->finish();
+            $bar->finish();*/
         }
     }
 }
