@@ -7,13 +7,11 @@
         <div class='col-4 locker_skin'>            
             @foreach ($locker_box as $locker_port =>$data)                
                 @if ($data['status']=="available")
-                <a href="/start-locker-request/{{$device->id}}/{{$locker_port}}" class="btn button">
-                      [ {{$data['caption']}} {{$data['status']}} ]
-                    
+                <a href="{{$data['link']}}" class="btn button">
+                      [ {{$data['caption']}} {{$data['status']}} ]                    
                 </a>
                 @else
-                    [ {{$data['caption']}} {{$data['status']}} ]
-                
+                    [ {{$data['caption']}} {{$data['status']}} ]                
                 @endif
             @endforeach
         </div>

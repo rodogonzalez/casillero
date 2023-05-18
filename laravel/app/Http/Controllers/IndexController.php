@@ -17,6 +17,8 @@ class IndexController extends Controller
     //
     public function request_locker($device_id)
     {
+        
+
         $RaspberryDevice = RaspberryDevice::where('id', $device_id)->first();
         $locker_ports    = [
             // the key will be stored in the db, the value will be shown as label;
@@ -39,8 +41,12 @@ class IndexController extends Controller
         foreach ($locker_ports as $locker_port => $label) {
             $locker_current_status = $RaspberryDevice->{"gpio_{$locker_port}_status"};
 
+            $unlock_link = URL::signedRoute('start', ['device_id' => $device_id, 'locker_id' => $locker_port]);
+            //$unlock_link = URL::temporarySignedRoute('start', now()->addSeconds(30) , ['device_id' => $device_id, 'locker_id' => $locker_port]);
+
             //if (in_array($locker_current_status, ['available', '', 'Available', null, 0])) {
-            $ports_availables[] = [$locker_port => ['caption' => $label, 'status' => $locker_current_status]];
+            $ports_availables[] = [$locker_port => ['caption' => $label, 'status' => $locker_current_status , 'link' => $unlock_link]];
+
             //}
         }
 
@@ -74,6 +80,10 @@ class IndexController extends Controller
 
     public function start_order($device_id, $port)
     {
+
+        if (! request()->hasValidSignature()) {
+            abort(401);
+        }
         $RaspberryDevice = RaspberryDevice::where('id', $device_id)->first();
 
         /*
@@ -176,14 +186,12 @@ class IndexController extends Controller
         $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
 
         $qrcode = (new QRCode($options))->render($unlock_link);
-        
 
-        return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode , 'url'=>$unlock_link]);
+        return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
     }
 
     public function unlock_order($order_id)
     {
-        
         $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
 
         //dd($LockerOrder);

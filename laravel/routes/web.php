@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 });
 Route::get('request-locker/{device_id}', [IndexController::class, 'request_locker'] );
-Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] );
+Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] )->name('start')->middleware('signed');;
 Route::get('u/{order_id}', [IndexController::class, 'unlock_order'] )->name('unlock')->middleware('signed');
 
 Route::post('device-feed/{device_id}', [IndexController::class, 'get_device_feed'] );
