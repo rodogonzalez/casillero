@@ -35,6 +35,76 @@ class process_gpio_queue extends Command
         parent::__construct();
     }
 
+    public function execute_db_connection(){
+
+        ini_set('max_execution_time', 25000);
+        $delay = 15;
+
+        try {
+            //$url = env('APP_URL') . '/device-feed/' . env('RASPBERRY_DEVICE_ID') . '?md=' . md5(now());
+            $this->info('...........');
+            $this->info('retrieving data...  ' );
+            
+            $commands=\App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();
+            $gpio        = new GPIO();
+            $reset_cache = false;
+
+            foreach ($commands as $gpio_command) {
+                //dd($gpio_command);
+                if (env('GPIO_AVAILABLE')) {
+                    $pin = $gpio->getOutputPin($gpio_command['gpio_port']);
+                    $pin->setValue(PinInterface::VALUE_LOW);
+                } else {
+                    $this->info('Skipping GPIO action');
+                }
+                $reset_cache = true;
+            }
+
+            if ($reset_cache) {
+                $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();
+
+                foreach ($commands as $gpio_command) {
+                    $this->info('Command on Port: ' . $gpio_command['gpio_port'] . ' ' . $gpio_command['command']);
+
+                    if (env('GPIO_AVAILABLE')) {
+                        $pin = $gpio->getOutputPin($gpio_command['gpio_port']);
+                        $pin->setValue(PinInterface::VALUE_HIGH);
+                    } else {
+                        $this->info('Skipping GPIO action');
+                    }
+                }
+                $ids = [];
+                foreach ($commands as $gpio_command) {
+                    $ids[]                                                              = $gpio_command['id'];
+                    $this_raspberry->{'gpio_' . $gpio_command['gpio_port'] . '_status'} = $gpio_command['command'];
+                }
+
+                \App\Models\ProcessQueue::whereRaw('id in (' . implode(',', $ids) . ')')->update(['executed' => true]);
+
+                $this_raspberry->last_ip = request()->ip();
+                $this_raspberry->save();
+
+                $url = env('APP_URL') . '/reset-device-feed/' . env('RASPBERRY_DEVICE_ID');
+
+                $this->info('resetting cache ' . $url);                
+                Http::get($url, []);
+            }
+
+            if (count($commands) == 0) {
+                $this->info('No commands queued!');
+            }
+
+            $this->info('done -> ');
+        } catch (Exception $e) {
+            
+            $this->error($e->getMessage());
+
+            return false;
+        }
+
+
+    }
+
     private function every_raise()
     {
         ini_set('max_execution_time', 25000);
@@ -86,8 +156,7 @@ class process_gpio_queue extends Command
 
                 $url = env('APP_URL') . '/reset-device-feed/' . env('RASPBERRY_DEVICE_ID');
 
-                $this->info('resetting cache ' . $url);
-                sleep(15);
+                $this->info('resetting cache ' . $url);                
                 Http::get($url, []);
             }
 
@@ -133,7 +202,7 @@ class process_gpio_queue extends Command
         $this->turn_all_off();
 
         while (1 != 2) {
-            $this->every_raise();
+            $this->execute_db_connection();
 
             $second_delay = 3;
 
