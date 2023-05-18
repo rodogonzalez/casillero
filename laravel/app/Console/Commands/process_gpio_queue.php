@@ -97,7 +97,8 @@ class process_gpio_queue extends Command
 
             $this->info('done -> ');
         } catch (Exception $e) {
-            print_r($e);
+            
+            $this->error($e->getMessage());
 
             return false;
         }
@@ -105,6 +106,7 @@ class process_gpio_queue extends Command
 
     private function turn_all_off()
     {
+        $this->info('init ... ' );
         // Create a GPIO object
         $gpio = new GPIO();
 
@@ -115,7 +117,7 @@ class process_gpio_queue extends Command
             }
         }
 
-        sleep(2);
+        sleep(5);
 
         for ($x = 0; $x <= 27; $x++) {
             if (env('GPIO_AVAILABLE')) {
@@ -129,6 +131,7 @@ class process_gpio_queue extends Command
     {
         // this command is executed each minute, so to keep it executing each 2 seconds , it will be using the command sleep to
         // await , the execution of this command will take around 1 minute
+
         $this->turn_all_off();
 
         while (1 != 2) {
