@@ -15,10 +15,3 @@
     </ul>
 </li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('log') }}'><i class='nav-icon la la-terminal'></i> Logs</a></li>
-
-
-
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('locker-order') }}"><i class="nav-icon la la-question"></i> Locker orders</a></li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('process-queue') }}"><i class="nav-icon la la-question"></i> Process queues</a></li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('raspberry-device') }}"><i class="nav-icon la la-question"></i> Raspberry devices</a></li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-question"></i> Users</a></li>
