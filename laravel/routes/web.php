@@ -20,8 +20,8 @@ Route::get('/', function () {
 });
 Route::get('request-locker/{device_id}', [IndexController::class, 'request_locker'] );
 Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] );
-Route::get('unlock/{order_id}', [IndexController::class, 'unlock_order'] );
+Route::get('unlock/{order_id}', [IndexController::class, 'unlock_order'] )->name('unlock');
 
-Route::get('device-feed/{device_id}', [IndexController::class, 'get_device_feed'] );
+Route::post('device-feed/{device_id}', [IndexController::class, 'get_device_feed'] )->middleware('signed');;
 
 Route::get('reset-device-feed/{device_id}', [IndexController::class, 'reset_device_feed'] );
