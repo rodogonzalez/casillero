@@ -196,6 +196,7 @@ class IndexController extends Controller
             abort(404);
         }
         $LockerOrder->closening_paid_at = now();
+        sleep(30);
         $LockerOrder->save();
 
         $ProcessQueue = ProcessQueue::create([
