@@ -171,21 +171,20 @@ class IndexController extends Controller
                 'version'    => 5,
             ]
         );
-        
 
         //$unlock_link = env('APP_URL') . ;
-        $unlock_link = URL::signedRoute('unlock', ['order_id' => md5($LockerOrder->id)]);
+        $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
 
-        dd($unlock_link);
-
+        $qrcode = (new QRCode($options))->render($unlock_link);
         
 
-        return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode]);
+        return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode , 'url'=>$unlock_link]);
     }
 
     public function unlock_order($order_id)
     {
-        $LockerOrder = LockerOrder::whereRaw("md5(id) =  '{$order_id}'")->first();
+        
+        $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
 
         //dd($LockerOrder);
         if ($LockerOrder->closening_paid_at != null) {
