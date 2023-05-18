@@ -176,7 +176,7 @@ class IndexController extends Controller
         );       
 
         //$unlock_link = env('APP_URL') . ;
-        $unlock_link =URL::signedRoute('/unlock/' . md5($LockerOrder->id) );
+        $unlock_link =URL::signedRoute('unlock/' . md5($LockerOrder->id) );
 
         $qrcode = (new QRCode($options))->render($unlock_link);
         
