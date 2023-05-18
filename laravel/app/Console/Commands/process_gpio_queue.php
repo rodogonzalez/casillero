@@ -200,7 +200,7 @@ class process_gpio_queue extends Command
         while (1 != 2) {
             $this->execute_db_connection();
 
-            $second_delay = 3;
+            $second_delay = 0;
 
             $bar = $this->output->createProgressBar($second_delay);
 
