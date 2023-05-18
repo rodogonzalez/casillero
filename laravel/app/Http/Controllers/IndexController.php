@@ -207,6 +207,6 @@ class IndexController extends Controller
             'executed'            => 0
         ]);
         Cache::forget('device_' . $LockerOrder->raspberry_device_id);
-        return view('locker.order.closed')->header("Refresh", "5;url=/");
+        return  response()->view('locker.order.closed')->header("Refresh", "5;url=/");
     }
 }
