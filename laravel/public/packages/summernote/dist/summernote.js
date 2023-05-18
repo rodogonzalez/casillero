@@ -1,7 +1,7 @@
 /*!
  * 
  * Super simple WYSIWYG editor v0.8.20
- * https://summernote.org
+ * https://ummernote.org
  *
  *
  * Copyright 2013- Alan Hong and contributors
@@ -440,8 +440,8 @@ function uniqueId(prefix) {
 /**
  * returns bnd (bounds) from rect
  *
- * - IE Compatibility Issue: http://goo.gl/sRLOAo
- * - Scroll Issue: http://goo.gl/sNjUc
+ * - IE Compatibility Issue: https://goo.gl/sRLOAo
+ * - Scroll Issue: https://goo.gl/sNjUc
  *
  * @param {Rect} rect
  * @return {Object} bounds
@@ -877,7 +877,7 @@ function isElement(node) {
 }
 /**
  * ex) br, col, embed, hr, img, input, ...
- * @see http://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
+ * @see https://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
  */
 
 
@@ -2454,7 +2454,7 @@ function range_createClass(Constructor, protoProps, staticProps) { if (protoProp
  * @param {Boolean} isStart
  * @return {BoundaryPoint}
  *
- * @see http://msdn.microsoft.com/en-us/library/ie/ms535872(v=vs.85).aspx
+ * @see https://msdn.microsoft.com/en-us/library/ie/ms535872(v=vs.85).aspx
  */
 
 function textRangeToPoint(textRange, isStart) {
@@ -3217,7 +3217,7 @@ var WrappedRange = /*#__PURE__*/function () {
  *  * BoundaryPoint: a point of dom tree
  *  * BoundaryPoints: two boundaryPoints corresponding to the start and the end of the Range
  *
- * See to http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-Position
+ * See to https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-Position
  */
 
 
@@ -5248,7 +5248,7 @@ var Editor = /*#__PURE__*/function () {
       if (_this.options.onCreateLink) {
         linkUrl = _this.options.onCreateLink(linkUrl);
       } else if (checkProtocol) {
-        // if url doesn't have any protocol and not even a relative or a label, use http:// as default
+        // if url doesn't have any protocol and not even a relative or a label, use https:// as default
         linkUrl = /^([A-Za-z][A-Za-z0-9+-.]*\:|#|\/)/.test(linkUrl) ? linkUrl : _this.options.defaultProtocol + linkUrl;
       }
 
@@ -6908,7 +6908,7 @@ function AutoLink_createClass(Constructor, protoProps, staticProps) { if (protoP
 
 
 
-var defaultScheme = 'http://';
+var defaultScheme = 'https://';
 var linkPattern = /^([A-Za-z][A-Za-z0-9+-.]*\:[\/]{2}|tel:|mailto:[A-Z0-9._%+-]+@|xmpp:[A-Z0-9._%+-]+@)?(www\.)?(.+)$/i;
 
 var AutoLink = /*#__PURE__*/function () {
@@ -8273,7 +8273,7 @@ var LinkDialog = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       var $container = this.options.dialogsInBody ? this.$body : this.options.container;
-      var body = ['<div class="form-group note-form-group">', "<label for=\"note-dialog-link-txt-".concat(this.options.id, "\" class=\"note-form-label\">").concat(this.lang.link.textToDisplay, "</label>"), "<input id=\"note-dialog-link-txt-".concat(this.options.id, "\" class=\"note-link-text form-control note-form-control note-input\" type=\"text\"/>"), '</div>', '<div class="form-group note-form-group">', "<label for=\"note-dialog-link-url-".concat(this.options.id, "\" class=\"note-form-label\">").concat(this.lang.link.url, "</label>"), "<input id=\"note-dialog-link-url-".concat(this.options.id, "\" class=\"note-link-url form-control note-form-control note-input\" type=\"text\" value=\"http://\"/>"), '</div>', !this.options.disableLinkTarget ? external_jQuery_default()('<div></div>').append(this.ui.checkbox({
+      var body = ['<div class="form-group note-form-group">', "<label for=\"note-dialog-link-txt-".concat(this.options.id, "\" class=\"note-form-label\">").concat(this.lang.link.textToDisplay, "</label>"), "<input id=\"note-dialog-link-txt-".concat(this.options.id, "\" class=\"note-link-text form-control note-form-control note-input\" type=\"text\"/>"), '</div>', '<div class="form-group note-form-group">', "<label for=\"note-dialog-link-url-".concat(this.options.id, "\" class=\"note-form-label\">").concat(this.lang.link.url, "</label>"), "<input id=\"note-dialog-link-url-".concat(this.options.id, "\" class=\"note-link-url form-control note-form-control note-input\" type=\"text\" value=\"https://\"/>"), '</div>', !this.options.disableLinkTarget ? external_jQuery_default()('<div></div>').append(this.ui.checkbox({
         className: 'sn-checkbox-open-in-new-window',
         text: this.lang.link.openInNewWindow,
         checked: true
@@ -9139,7 +9139,7 @@ var HelpDialog = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       var $container = this.options.dialogsInBody ? this.$body : this.options.container;
-      var body = ['<p class="text-center">', '<a href="http://summernote.org/" target="_blank" rel="noopener noreferrer">Summernote 0.8.20</a> · ', '<a href="https://github.com/summernote/summernote" target="_blank" rel="noopener noreferrer">Project</a> · ', '<a href="https://github.com/summernote/summernote/issues" target="_blank" rel="noopener noreferrer">Issues</a>', '</p>'].join('');
+      var body = ['<p class="text-center">', '<a href="https://ummernote.org/" target="_blank" rel="noopener noreferrer">Summernote 0.8.20</a> · ', '<a href="https://github.com/summernote/summernote" target="_blank" rel="noopener noreferrer">Project</a> · ', '<a href="https://github.com/summernote/summernote/issues" target="_blank" rel="noopener noreferrer">Issues</a>', '</p>'].join('');
       this.$dialog = this.ui.dialog({
         title: this.lang.options.help,
         fade: this.options.dialogsFade,
@@ -9748,7 +9748,7 @@ var HintPopover = /*#__PURE__*/function () {
     height: null,
     linkTargetBlank: true,
     useProtocol: true,
-    defaultProtocol: 'http://',
+    defaultProtocol: 'https://',
     focus: false,
     tabDisabled: false,
     tabSize: 4,
@@ -9780,7 +9780,7 @@ var HintPopover = /*#__PURE__*/function () {
     fontSizeUnits: ['px', 'pt'],
     // pallete colors(n x n)
     colors: [['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'], ['#FF0000', '#FF9C00', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#9C00FF', '#FF00FF'], ['#F7C6CE', '#FFE7CE', '#FFEFC6', '#D6EFD6', '#CEDEE7', '#CEE7F7', '#D6D6E7', '#E7D6DE'], ['#E79C9C', '#FFC69C', '#FFE79C', '#B5D6A5', '#A5C6CE', '#9CC6EF', '#B5A5D6', '#D6A5BD'], ['#E76363', '#F7AD6B', '#FFD663', '#94BD7B', '#73A5AD', '#6BADDE', '#8C7BC6', '#C67BA5'], ['#CE0000', '#E79439', '#EFC631', '#6BA54A', '#4A7B8C', '#3984C6', '#634AA5', '#A54A7B'], ['#9C0000', '#B56308', '#BD9400', '#397B21', '#104A5A', '#085294', '#311873', '#731842'], ['#630000', '#7B3900', '#846300', '#295218', '#083139', '#003163', '#21104A', '#4A1031']],
-    // http://chir.ag/projects/name-that-color/
+    // https://chir.ag/projects/name-that-color/
     colorsName: [['Black', 'Tundora', 'Dove Gray', 'Star Dust', 'Pale Slate', 'Gallery', 'Alabaster', 'White'], ['Red', 'Orange Peel', 'Yellow', 'Green', 'Cyan', 'Blue', 'Electric Violet', 'Magenta'], ['Azalea', 'Karry', 'Egg White', 'Zanah', 'Botticelli', 'Tropical Blue', 'Mischka', 'Twilight'], ['Tonys Pink', 'Peach Orange', 'Cream Brulee', 'Sprout', 'Casper', 'Perano', 'Cold Purple', 'Careys Pink'], ['Mandy', 'Rajah', 'Dandelion', 'Olivine', 'Gulf Stream', 'Viking', 'Blue Marguerite', 'Puce'], ['Guardsman Red', 'Fire Bush', 'Golden Dream', 'Chelsea Cucumber', 'Smalt Blue', 'Boston Blue', 'Butterfly Bush', 'Cadillac'], ['Sangria', 'Mai Tai', 'Buddha Gold', 'Forest Green', 'Eden', 'Venice Blue', 'Meteorite', 'Claret'], ['Rosewood', 'Cinnamon', 'Olive', 'Parsley', 'Tiber', 'Midnight Blue', 'Valentino', 'Loulou']],
     colorButton: {
       foreColor: '#000000',

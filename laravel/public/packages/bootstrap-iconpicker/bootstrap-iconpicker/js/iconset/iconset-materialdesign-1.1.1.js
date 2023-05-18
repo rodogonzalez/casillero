@@ -3,7 +3,7 @@
  * https://victor-valencia.github.com/bootstrap-iconpicker
  *
  * Iconset: Material Design 1.1.1
- * http://zavoloklom.github.io/material-design-iconic-font
+ * https://zavoloklom.github.io/material-design-iconic-font
  * ========================================================================
  * Copyright 2013-2017 Victor Valencia Rico.
  * Licensed under MIT license.

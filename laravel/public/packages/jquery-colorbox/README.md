@@ -1,5 +1,5 @@
 ## About Colorbox:
-A customizable lightbox plugin for jQuery.  See the [project page](http://jacklmoore.com/colorbox/) for documentation and a demonstration, and the [FAQ](http://jacklmoore.com/colorbox/faq/) for solutions and examples to common issues.  Released under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
+A customizable lightbox plugin for jQuery.  See the [project page](https://jacklmoore.com/colorbox/) for documentation and a demonstration, and the [FAQ](https://jacklmoore.com/colorbox/faq/) for solutions and examples to common issues.  Released under the [MIT license](https://www.opensource.org/licenses/mit-license.php).
 
 ## Changelog:
 
@@ -302,7 +302,7 @@ Files Changed: *.js
 ##### Version 1.3.20 - August 15 2012
 Files Changed:jquery.colorbox.js
 
-* Added temporary workaround for jQuery-UI 1.8 bug (http://bugs.jquery.com/ticket/12273)
+* Added temporary workaround for jQuery-UI 1.8 bug (https://bugs.jquery.com/ticket/12273)
 * Added *.jpe extension to the list of image types.
 
 ##### Version 1.3.19 - December 08 2011
@@ -402,7 +402,7 @@ Files Changed: jquery.colorbox.js/jquery.colorbox-min.js/index.html
 * Added options (escKey:false, arrowKey:false) to disable esc-key and arrow-key bindings.
 * Added method for removing Colorbox from a document: $.colorbox.remove();
 * Fixed a bug where iframed URLs would be truncated if they contained an unencoded apostrophe.
-* Now uses the exact href specified on an anchor, rather than the version returned by 'this.href'. This was causing "#example" to be normalized to "http://domain/#example" which interfered with how some users were setting up links to inline content.
+* Now uses the exact href specified on an anchor, rather than the version returned by 'this.href'. This was causing "#example" to be normalized to "https://domain/#example" which interfered with how some users were setting up links to inline content.
 * Changed example documents over to HTML5.
 
 ##### Version 1.3.6 - Jan 13 2010
@@ -586,7 +586,7 @@ Files Changed: jquery.colorbox.js, jquery.colorbox-min.js
 * Inline content now preserves JavaScript events, and changes made while Colorbox is open are also preserved.
 * Added 'href' setting to add the ability to set an alternative href for any anchor, or to assign the Colorbox event to non-anchors. 
   Example: $('button').colorbox({'href':'process.php'})
-  Example: $('a[href='http://msn.com']).colorbox({'href':'http://google.com', iframe:true});
+  Example: $('a[href='https://msn.com']).colorbox({'href':'https://google.com', iframe:true});
 * Photos are now horizontally centered if they are smaller than the lightbox size.  Also vertically centered for browsers newer than IE7.
 * Buttons in the examples are now included in the 'protected zone'.  The lightbox will never expand it's borders or buttons beyond an accessible area of the screen.
 * Keypress events don't queue up by holding down the arrow keys.

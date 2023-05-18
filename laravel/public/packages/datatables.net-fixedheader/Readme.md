@@ -1,6 +1,6 @@
 # FixedHeader for DataTables 
 
-This package contains distribution files for the [FixedHeader extension](https://datatables.net/extensions/fixedheader) for [DataTables](https://datatables.net/). Only the core software for this library is contained in this package - to be correctly styled, a styling package for FixedHeader must also be included. Styling options include DataTable's native styling, [Bootstrap](http://getbootstrap.com) and [Foundation](http://foundation.zurb.com/).
+This package contains distribution files for the [FixedHeader extension](https://datatables.net/extensions/fixedheader) for [DataTables](https://datatables.net/). Only the core software for this library is contained in this package - to be correctly styled, a styling package for FixedHeader must also be included. Styling options include DataTable's native styling, [Bootstrap](https://getbootstrap.com) and [Foundation](https://foundation.zurb.com/).
 
 When displaying large amounts of data in a table, it can often be useful for the end user to have the column titles always visible. This is particularly true if using DataTables with pagination disabled, or the display length is set to a high value. The FixedHeader extension provides this ability.
 
@@ -47,7 +47,7 @@ Support for DataTables is available through the [DataTables forums](//datatables
 
 ### Contributing
 
-If you are thinking of contributing code to DataTables, first of all, thank you! All fixes, patches and enhancements to DataTables are very warmly welcomed. This repository is a distribution repo, so patches and issues sent to this repo will not be accepted. Instead, please direct pull requests to the [DataTables/FixedHeader](http://github.com/DataTables/FixedHeader). For issues / bugs, please direct your questions to the [DataTables forums](//datatables.net/forums).
+If you are thinking of contributing code to DataTables, first of all, thank you! All fixes, patches and enhancements to DataTables are very warmly welcomed. This repository is a distribution repo, so patches and issues sent to this repo will not be accepted. Instead, please direct pull requests to the [DataTables/FixedHeader](https://github.com/DataTables/FixedHeader). For issues / bugs, please direct your questions to the [DataTables forums](//datatables.net/forums).
 
 
 ## License

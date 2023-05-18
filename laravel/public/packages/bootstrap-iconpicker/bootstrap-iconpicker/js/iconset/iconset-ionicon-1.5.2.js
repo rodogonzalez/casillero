@@ -3,7 +3,7 @@
  * https://victor-valencia.github.com/bootstrap-iconpicker
  *
  * Iconset: Ionicons 1.5.2
- * http://ionicons.com/
+ * https://ionicons.com/
  * ========================================================================
  * Copyright 2013-2017 Victor Valencia Rico.
  * Licensed under MIT license.

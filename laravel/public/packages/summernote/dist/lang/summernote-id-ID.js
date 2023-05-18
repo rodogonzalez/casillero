@@ -1,7 +1,7 @@
 /*!
  * 
  * Super simple WYSIWYG editor v0.8.20
- * https://summernote.org
+ * https://ummernote.org
  *
  *
  * Copyright 2013- Alan Hong and contributors

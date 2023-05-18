@@ -804,7 +804,7 @@
         return regexes[token](config._strict, config._locale);
     }
 
-    // Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
+    // Code from https://tackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
     function unescapeFormat(s) {
         return regexEscape(
             s
@@ -1275,7 +1275,7 @@
 
     function createDate(y, m, d, h, M, s, ms) {
         // can't just apply() to create a date:
-        // https://stackoverflow.com/q/181348
+        // https://tackoverflow.com/q/181348
         var date;
         // the date constructor remaps years 0-99 to 1900-1999
         if (y < 100 && y >= 0) {
@@ -2143,7 +2143,7 @@
                     'use moment.updateLocale(localeName, config) to change ' +
                         'an existing locale. moment.defineLocale(localeName, ' +
                         'config) should only be used for creating a new locale ' +
-                        'See http://momentjs.com/guides/#/warnings/define-locale/ for more info.'
+                        'See https://momentjs.com/guides/#/warnings/define-locale/ for more info.'
                 );
                 parentConfig = locales[name]._config;
             } else if (config.parentLocale != null) {
@@ -2548,7 +2548,7 @@
     hooks.createFromInputFallback = deprecate(
         'value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), ' +
             'which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are ' +
-            'discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.',
+            'discouraged. Please refer to https://momentjs.com/guides/#/warnings/js-date/ for more info.',
         function (config) {
             config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
         }
@@ -3036,7 +3036,7 @@
     }
 
     var prototypeMin = deprecate(
-            'moment().min is deprecated, use moment.max instead. http://momentjs.com/guides/#/warnings/min-max/',
+            'moment().min is deprecated, use moment.max instead. https://momentjs.com/guides/#/warnings/min-max/',
             function () {
                 var other = createLocal.apply(null, arguments);
                 if (this.isValid() && other.isValid()) {
@@ -3047,7 +3047,7 @@
             }
         ),
         prototypeMax = deprecate(
-            'moment().max is deprecated, use moment.min instead. http://momentjs.com/guides/#/warnings/min-max/',
+            'moment().max is deprecated, use moment.min instead. https://momentjs.com/guides/#/warnings/min-max/',
             function () {
                 var other = createLocal.apply(null, arguments);
                 if (this.isValid() && other.isValid()) {
@@ -3448,7 +3448,7 @@
 
     // ASP.NET json date format regex
     var aspNetRegex = /^(-|\+)?(?:(\d*)[. ])?(\d+):(\d+)(?::(\d+)(\.\d*)?)?$/,
-        // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+        // from https://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
         // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
         // and further modified to allow for strings containing both week and day
         isoRegex =
@@ -3583,7 +3583,7 @@
                         '(period, number) is deprecated. Please use moment().' +
                         name +
                         '(number, period). ' +
-                        'See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.'
+                        'See https://momentjs.com/guides/#/warnings/add-inverted-param/ for more info.'
                 );
                 tmp = val;
                 val = period;
@@ -4980,11 +4980,11 @@
         getSetYear
     );
     proto.zone = deprecate(
-        'moment().zone is deprecated, use moment().utcOffset instead. http://momentjs.com/guides/#/warnings/zone/',
+        'moment().zone is deprecated, use moment().utcOffset instead. https://momentjs.com/guides/#/warnings/zone/',
         getSetZone
     );
     proto.isDSTShifted = deprecate(
-        'isDSTShifted is deprecated. See http://momentjs.com/guides/#/warnings/dst-shifted/ for more information',
+        'isDSTShifted is deprecated. See https://momentjs.com/guides/#/warnings/dst-shifted/ for more information',
         isDaylightSavingTimeShifted
     );
 
@@ -15004,9 +15004,9 @@
         /^дек/i,
     ];
 
-    // http://new.gramota.ru/spravka/rules/139-prop : § 103
-    // Сокращения месяцев: http://new.gramota.ru/spravka/buro/search-answer?s=242637
-    // CLDR data:          http://www.unicode.org/cldr/charts/28/summary/ru.html#1753
+    // https://new.gramota.ru/spravka/rules/139-prop : § 103
+    // Сокращения месяцев: https://new.gramota.ru/spravka/buro/search-answer?s=242637
+    // CLDR data:          https://www.unicode.org/cldr/charts/28/summary/ru.html#1753
     hooks.defineLocale('ru', {
         months: {
             format: 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split(
@@ -16273,7 +16273,7 @@
                 return symbolMap$g[match];
             });
         },
-        // refer http://ta.wikipedia.org/s/1er1
+        // refer https://ta.wikipedia.org/s/1er1
         meridiemParse: /யாமம்|வைகறை|காலை|நண்பகல்|எற்பாடு|மாலை/,
         meridiem: function (hour, minute, isLower) {
             if (hour < 2) {

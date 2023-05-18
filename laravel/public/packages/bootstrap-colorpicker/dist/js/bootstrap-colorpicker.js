@@ -2136,7 +2136,7 @@ convert.hsv.hsl = function (hsv) {
 	return [h, sl * 100, l * 100];
 };
 
-// http://dev.w3.org/csswg/css-color/#hwb-to-rgb
+// https://dev.w3.org/csswg/css-color/#hwb-to-rgb
 convert.hwb.rgb = function (hwb) {
 	var h = hwb[0] / 360;
 	var wh = hwb[1] / 100;
@@ -5027,7 +5027,7 @@ Color.prototype = {
 	},
 
 	luminosity: function () {
-		// http://www.w3.org/TR/WCAG20/#relativeluminancedef
+		// https://www.w3.org/TR/WCAG20/#relativeluminancedef
 		var rgb = this.rgb().color;
 
 		var lum = [];
@@ -5040,7 +5040,7 @@ Color.prototype = {
 	},
 
 	contrast: function (color2) {
-		// http://www.w3.org/TR/WCAG20/#contrast-ratiodef
+		// https://www.w3.org/TR/WCAG20/#contrast-ratiodef
 		var lum1 = this.luminosity();
 		var lum2 = color2.luminosity();
 
@@ -5061,7 +5061,7 @@ Color.prototype = {
 	},
 
 	isDark: function () {
-		// YIQ equation from http://24ways.org/2010/calculating-color-contrast
+		// YIQ equation from https://24ways.org/2010/calculating-color-contrast
 		var rgb = this.rgb().color;
 		var yiq = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
 		return yiq < 128;
@@ -5116,7 +5116,7 @@ Color.prototype = {
 	},
 
 	grayscale: function () {
-		// http://en.wikipedia.org/wiki/Grayscale#Converting_color_to_grayscale
+		// https://en.wikipedia.org/wiki/Grayscale#Converting_color_to_grayscale
 		var rgb = this.rgb().color;
 		var val = rgb[0] * 0.3 + rgb[1] * 0.59 + rgb[2] * 0.11;
 		return Color.rgb(val, val, val);
@@ -5517,7 +5517,7 @@ var swizzle = module.exports = function swizzle(args) {
 		var arg = args[i];
 
 		if (isArrayish(arg)) {
-			// http://jsperf.com/javascript-array-concat-vs-push/98
+			// https://jsperf.com/javascript-array-concat-vs-push/98
 			results = concat.call(results, slice.call(arg));
 		} else {
 			results.push(arg);
@@ -5659,7 +5659,7 @@ function buildGraph() {
 
 	for (var len = models.length, i = 0; i < len; i++) {
 		graph[models[i]] = {
-			// http://jsperf.com/1-vs-infinity
+			// https://jsperf.com/1-vs-infinity
 			// micro-opt, but this is simple.
 			distance: -1,
 			parent: null

@@ -1,6 +1,6 @@
 # DataTables for jQuery
 
-This package contains distribution files for the [DataTables library](https://datatables.net) for [jQuery](http://jquery.com/). Only the core software for this library is contained in this package - to be correctly styled, a styling package for DataTables must also be included. Styling options include DataTable's native styling, [Bootstrap](http://getbootstrap.com) and [Foundation](http://foundation.zurb.com/).
+This package contains distribution files for the [DataTables library](https://datatables.net) for [jQuery](https://jquery.com/). Only the core software for this library is contained in this package - to be correctly styled, a styling package for DataTables must also be included. Styling options include DataTable's native styling, [Bootstrap](https://getbootstrap.com) and [Foundation](https://foundation.zurb.com/).
 
 DataTables is a table enhancing library which adds features such as paging, ordering, search, scrolling and many more to a static HTML page. A comprehensive API is also available that can be used to manipulate the table. Please refer to the [DataTables web-site](//datatables.net) for a full range of documentation and examples.
 
@@ -48,7 +48,7 @@ Support for DataTables is available through the [DataTables forums](//datatables
 
 ### Contributing
 
-If you are thinking of contributing code to DataTables, first of all, thank you! All fixes, patches and enhancements to DataTables are very warmly welcomed. This repository is a distribution repo, so patches and issues sent to this repo will not be accepted. Instead, please direct pull requests to the [DataTables/DataTablesSrc](http://github.com/DataTables/DataTablesSrc). For issues / bugs, please direct your questions to the [DataTables forums](//datatables.net/forums).
+If you are thinking of contributing code to DataTables, first of all, thank you! All fixes, patches and enhancements to DataTables are very warmly welcomed. This repository is a distribution repo, so patches and issues sent to this repo will not be accepted. Instead, please direct pull requests to the [DataTables/DataTablesSrc](https://github.com/DataTables/DataTablesSrc). For issues / bugs, please direct your questions to the [DataTables forums](//datatables.net/forums).
 
 
 ## License

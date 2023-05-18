@@ -3,7 +3,7 @@
  * https://victor-valencia.github.com/bootstrap-iconpicker
  *
  * Iconset: Elusive icons 2.0.0
- * http://press.codes/downloads/elusive-icons-webfont/
+ * https://press.codes/downloads/elusive-icons-webfont/
  * ========================================================================
  * Copyright 2013-2017 Victor Valencia Rico.
  * Licensed under MIT license.

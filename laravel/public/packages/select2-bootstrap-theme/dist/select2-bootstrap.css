@@ -1,5 +1,5 @@
 /*!
- * Select2 Bootstrap Theme v0.1.0-beta.10 (https://select2.github.io/select2-bootstrap-theme)
+ * Select2 Bootstrap Theme v0.1.0-beta.10 (https://elect2.github.io/select2-bootstrap-theme)
  * Copyright 2015-2017 Florian Kissling and contributors (https://github.com/select2/select2-bootstrap-theme/graphs/contributors)
  * Licensed under MIT (https://github.com/select2/select2-bootstrap-theme/blob/master/LICENSE)
  */
@@ -19,7 +19,7 @@
    * Adjust Select2's choices hover and selected styles to match
    * Bootstrap 3's default dropdown styles.
    *
-   * @see http://getbootstrap.com/components/#dropdowns
+   * @see https://getbootstrap.com/components/#dropdowns
    */
   /**
    * Clear the selection.
@@ -27,8 +27,8 @@
   /**
    * Address disabled Select2 styles.
    *
-   * @see https://select2.github.io/examples.html#disabled
-   * @see http://getbootstrap.com/css/#forms-control-disabled
+   * @see https://elect2.github.io/examples.html#disabled
+   * @see https://getbootstrap.com/css/#forms-control-disabled
    */
   /*------------------------------------*      #DROPDOWN
   \*------------------------------------*/
@@ -48,7 +48,7 @@
    * 1. Reset Bootstrap defaults.
    * 2. Adjust the dropdown arrow button icon position.
    *
-   * @see http://getbootstrap.com/css/#forms-control-sizes
+   * @see https://getbootstrap.com/css/#forms-control-sizes
    */
   /* 1 */
   /*------------------------------------*    #RTL SUPPORT
@@ -86,7 +86,7 @@
   /**
      * Firefox 19+
      *
-     * @see http://stackoverflow.com/questions/24236240/color-for-styled-placeholder-text-is-muted-in-firefox
+     * @see https://tackoverflow.com/questions/24236240/color-for-styled-placeholder-text-is-muted-in-firefox
      */
 }
 
@@ -112,7 +112,7 @@
   /**
      * Disabled results.
      *
-     * @see https://select2.github.io/examples.html#disabled-results
+     * @see https://elect2.github.io/examples.html#disabled-results
      */
   /**
      * Hover state.
@@ -575,7 +575,7 @@
  * You may apply said classes to the Select2 dropdown (body > .select2-container)
  * via JavaScript match Bootstraps' to make its styles match.
  *
- * @see http://getbootstrap.com/css/#forms-control-validation
+ * @see https://getbootstrap.com/css/#forms-control-validation
  */
 .has-warning .select2-dropdown,
 .has-warning .select2-selection {
@@ -640,7 +640,7 @@
 /**
  * Select2 widgets in Bootstrap Input Groups
  *
- * @see http://getbootstrap.com/components/#input-groups
+ * @see https://getbootstrap.com/components/#input-groups
  * @see https://github.com/twbs/bootstrap/blob/master/less/input-groups.less
  */
 /**
@@ -679,7 +679,7 @@
    * Multi Select2's height which - depending on how many elements have been selected -
    * may grow taller than its initial size.
    *
-   * @see http://getbootstrap.com/components/#input-groups
+   * @see https://getbootstrap.com/components/#input-groups
    */
 }
 

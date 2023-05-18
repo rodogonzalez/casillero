@@ -7,7 +7,7 @@
 
 ## What's new in version 2.0
 
-The biggest change is that your nested list can now behave as a tree with expand/collapse funcionality. Simply set `isTree` to **true** in the options and you are good to go! Check the [demo](http://ilikenwf.github.io/example.html) out to see what can be done with nestedSortable and a little CSS. (Note that all **nestedSortable** does is to assign/remove classes on the fly)  
+The biggest change is that your nested list can now behave as a tree with expand/collapse funcionality. Simply set `isTree` to **true** in the options and you are good to go! Check the [demo](https://ilikenwf.github.io/example.html) out to see what can be done with nestedSortable and a little CSS. (Note that all **nestedSortable** does is to assign/remove classes on the fly)  
 Also:
 - **isAllowed** function finally works as expected, see the docs below
 - Fixed: a small bug in the **protectRoot** function
@@ -17,7 +17,7 @@ Also:
 
 ## Features
 
-- Designed to work seamlessly with the [nested](http://articles.sitepoint.com/article/hierarchical-data-database "A Sitepoint tutorial on PHP, MYSQL and nested sets") [set](http://en.wikipedia.org/wiki/Nested_set_model "Wikipedia article on nested sets") model (have a look at the `toArray` method)
+- Designed to work seamlessly with the [nested](https://articles.sitepoint.com/article/hierarchical-data-database "A Sitepoint tutorial on PHP, MYSQL and nested sets") [set](https://en.wikipedia.org/wiki/Nested_set_model "Wikipedia article on nested sets") model (have a look at the `toArray` method)
 - Items can be sorted in their own list, moved across the tree, or nested under other items.
 - Sublists are created and deleted on the fly
 - All jQuery Sortable options, events and methods are available
@@ -57,7 +57,7 @@ Please note: every `<li>` must have either one or two direct children, the first
 
 Also, the default list type is `<ol>`.
 
-*This is the bare minimum to have a working nestedSortable. Check the [demo](http://ilikenwf.github.io/example.html) out to see what can be accomplished with a little more.*
+*This is the bare minimum to have a working nestedSortable. Check the [demo](https://ilikenwf.github.io/example.html) out to see what can be accomplished with a little more.*
 
 ## Custom Options
 

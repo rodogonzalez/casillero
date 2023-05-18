@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres to [Semantic Versioning](https://emver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
@@ -930,7 +930,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added highlighting of matched text in autocompleter items #TINY-3687
 - Added the ability for autocompleters to work with matches that include spaces #TINY-3704
 - Added new `imagetools_fetch_image` callback to allow custom implementations for cors loading of images #TINY-3658
-- Added `'http'` and `https` options to `link_assume_external_targets` to prepend `http://` or `https://` prefixes when URL does not contain a protocol prefix. Patch contributed by francoisfreitag. #GH-4335
+- Added `'http'` and `https` options to `link_assume_external_targets` to prepend `https://` or `https://` prefixes when URL does not contain a protocol prefix. Patch contributed by francoisfreitag. #GH-4335
 
 ### Changed
 - Changed annotations navigation to work the same as inline boundaries #TINY-3396
@@ -2492,7 +2492,7 @@ Npm version bump due to package not being fully updated.
 - Added new html5 sizes attribute to img elements used together with srcset.
 - Added new elementpath option that makes it possible to disable the element path but keep the statusbar.
 - Added new option table_style_by_css for the table plugin to set table styling with css rather than table attributes.
-- Added new link_assume_external_targets option to prompt the user to prepend http:// prefix if the supplied link does not contain a protocol prefix.
+- Added new link_assume_external_targets option to prompt the user to prepend https:// prefix if the supplied link does not contain a protocol prefix.
 - Added new image_prepend_url option to allow a custom base path/url to be added to images.
 - Added new table_appearance_options option to make it possible to disable some options.
 - Added new image_title option to make it possible to alter the title of the image, disabled by default.

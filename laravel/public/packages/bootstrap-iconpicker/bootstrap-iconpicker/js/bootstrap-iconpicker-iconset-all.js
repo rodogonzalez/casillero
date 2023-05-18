@@ -11,7 +11,7 @@
 /*!========================================================================
  * Iconset: Elusive Icons
  * Versions: 2.0.0
- * http://elusiveicons.com/
+ * https://elusiveicons.com/
  * ======================================================================== */
 
 ;(function($){
@@ -339,7 +339,7 @@
 /*!========================================================================
  * Iconset: Flag Icons
  * Versions: 2.8.0
- * http://flag-icon-css.lip.is/
+ * https://flag-icon-css.lip.is/
  * CDN: https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/[VERSION]/css/flag-icon.min.css
  * ======================================================================== */
 
@@ -620,7 +620,7 @@
 /*!========================================================================
  * Iconset: Font Awesome
  * Versions: 4.0.0, 4.1.0, 4.2.0, 4.3.0, 4.4.0, 4.5.0, 4.6.0, 4.7.0
- * http://fortawesome.github.io/Font-Awesome/
+ * https://fortawesome.github.io/Font-Awesome/
  * CDN: https://maxcdn.bootstrapcdn.com/font-awesome/[VERSION]/css/font-awesome.min.css
  * ======================================================================== */
 
@@ -6943,7 +6943,7 @@
 /*!========================================================================
  * Iconset: Font Awesome
  * Versions: 5.3.1, 5.3.1_pro
- * http://fortawesome.github.io/Font-Awesome/
+ * https://fortawesome.github.io/Font-Awesome/
  * CDN: https://use.fontawesome.com/releases/[VERSION]/css/all.css
  * ======================================================================== */
 
@@ -11184,8 +11184,8 @@
 /*!========================================================================
  * Iconset: Ionicons
  * Versions: 1.5.2, 2.0.1
- * http://ionicons.com/
- * CDN: http://code.ionicframework.com/ionicons/[VERSION]/css/ionicons.min.css
+ * https://ionicons.com/
+ * CDN: https://code.ionicframework.com/ionicons/[VERSION]/css/ionicons.min.css
  * ======================================================================== */
 
 ;(function($){
@@ -12759,7 +12759,7 @@
 /*!========================================================================
  * Iconset: Material Design
  * Versions: 2.0.0, 2.0.1, 2.0.2, 2.1.0, 2.1.1, 2.1.2, 2.2.0
- * http://zavoloklom.github.io/material-design-iconic-font
+ * https://zavoloklom.github.io/material-design-iconic-font
  * CDN: https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/[VERSION]/css/material-design-iconic-font.min.css
  * ======================================================================== */
 
@@ -26136,7 +26136,7 @@
 /*!========================================================================
  * Iconset: Weather Icons
  * Versions: 1.2.0, 2.0.10
- * http://erikflowers.github.io/weather-icons/
+ * https://erikflowers.github.io/weather-icons/
  * ======================================================================== */
 
 ;(function($){

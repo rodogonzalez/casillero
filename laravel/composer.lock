@@ -262,7 +262,7 @@
                 {
                     "name": "Marius Constantin",
                     "email": "marius@updivision.com",
-                    "homepage": "http://www.updivision.com",
+                    "homepage": "https://www.updivision.com",
                     "role": "Lead Developer"
                 },
                 {
@@ -756,12 +756,12 @@
                 {
                     "name": "Dragonfly Development Inc.",
                     "email": "info@dflydev.com",
-                    "homepage": "http://dflydev.com"
+                    "homepage": "https://dflydev.com"
                 },
                 {
                     "name": "Beau Simensen",
                     "email": "beau@dflydev.com",
-                    "homepage": "http://beausimensen.com"
+                    "homepage": "https://beausimensen.com"
                 },
                 {
                     "name": "Carlos Frutos",
@@ -1909,7 +1909,7 @@
                 {
                     "name": "Márk Sági-Kazár",
                     "email": "mark.sagikazar@gmail.com",
-                    "homepage": "https://sagikazarmark.hu"
+                    "homepage": "https://agikazarmark.hu"
                 }
             ],
             "description": "PSR-7 message implementation that also provides common utility methods",
@@ -2888,7 +2888,7 @@
                 {
                     "name": "Jordi Boggiano",
                     "email": "j.boggiano@seld.be",
-                    "homepage": "https://seld.be"
+                    "homepage": "https://eld.be"
                 }
             ],
             "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
@@ -3479,13 +3479,13 @@
                 {
                     "name": "Dries Vints",
                     "email": "dries.vints@gmail.com",
-                    "homepage": "http://driesvints.com",
+                    "homepage": "https://driesvints.com",
                     "role": "Creator"
                 },
                 {
                     "name": "Cristian Tabacitu",
                     "email": "hello@tabacitu.ro",
-                    "homepage": "http://tabacitu.ro",
+                    "homepage": "https://tabacitu.ro",
                     "role": "Maintainer"
                 }
             ],
@@ -3638,7 +3638,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Standard interfaces for event handling.",
@@ -3973,11 +3973,11 @@
                 {
                     "name": "Justin Hileman",
                     "email": "justin@justinhileman.info",
-                    "homepage": "http://justinhileman.com"
+                    "homepage": "https://justinhileman.com"
                 }
             ],
             "description": "An interactive shell for modern PHP.",
-            "homepage": "http://psysh.org",
+            "homepage": "https://psysh.org",
             "keywords": [
                 "REPL",
                 "console",
@@ -4269,7 +4269,7 @@
                 {
                     "name": "Freek Van der Herten",
                     "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
+                    "homepage": "https://patie.be",
                     "role": "Developer"
                 }
             ],
@@ -4363,11 +4363,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Eases the creation of beautiful and testable command line interfaces",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "cli",
                 "command-line",
@@ -4379,7 +4379,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -4434,17 +4434,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Converts CSS selectors to XPath expressions",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/css-selector/tree/v6.2.7"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -4501,17 +4501,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "A generic function and convention to trigger deprecation notices",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/deprecation-contracts/tree/v3.2.1"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -4572,17 +4572,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Provides tools to manage errors and ease debugging PHP code",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/error-handler/tree/v6.2.10"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -4655,17 +4655,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Provides tools that allow your application components to communicate with each other by dispatching events and listening to them",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/event-dispatcher/tree/v6.2.8"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -4726,11 +4726,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Generic abstractions related to dispatching event",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "abstractions",
                 "contracts",
@@ -4744,7 +4744,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -4798,17 +4798,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Finds files and directories via an intuitive fluent interface",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/finder/tree/v6.2.7"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -4876,17 +4876,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Defines an object-oriented layer for the HTTP specification",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/http-foundation/tree/v6.2.10"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -4987,17 +4987,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Provides a structured process for converting a Request into a Response",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/http-kernel/tree/v6.2.10"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5066,17 +5066,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Helps sending emails",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/mailer/tree/v6.2.8"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5145,11 +5145,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Allows manipulating MIME messages",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "mime",
                 "mime-type"
@@ -5159,7 +5159,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5225,11 +5225,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "compatibility",
                 "ctype",
@@ -5241,7 +5241,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5304,11 +5304,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for intl's grapheme_* functions",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "compatibility",
                 "grapheme",
@@ -5322,7 +5322,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5391,11 +5391,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "compatibility",
                 "idn",
@@ -5409,7 +5409,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5475,11 +5475,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for intl's Normalizer class and related functions",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "compatibility",
                 "intl",
@@ -5493,7 +5493,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5559,11 +5559,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for the Mbstring extension",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "compatibility",
                 "mbstring",
@@ -5576,7 +5576,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5636,11 +5636,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "compatibility",
                 "polyfill",
@@ -5652,7 +5652,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5719,11 +5719,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "compatibility",
                 "polyfill",
@@ -5735,7 +5735,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5801,11 +5801,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for uuid functions",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "compatibility",
                 "polyfill",
@@ -5817,7 +5817,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5868,17 +5868,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Executes commands in sub-processes",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/process/tree/v6.2.10"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -5950,11 +5950,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Maps an HTTP request to a set of configuration variables",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "router",
                 "routing",
@@ -5966,7 +5966,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -6033,11 +6033,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Generic abstractions related to writing services",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "abstractions",
                 "contracts",
@@ -6051,7 +6051,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -6119,11 +6119,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Provides an object-oriented API to strings and deals with bytes, UTF-8 code points and grapheme clusters in a unified way",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "grapheme",
                 "i18n",
@@ -6137,7 +6137,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -6225,17 +6225,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Provides tools to internationalize your application",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/translation/tree/v6.2.8"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -6298,11 +6298,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Generic abstractions related to translation",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "abstractions",
                 "contracts",
@@ -6316,7 +6316,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -6375,11 +6375,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Provides an object-oriented API to generate and represent UIDs",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "UID",
                 "ulid",
@@ -6390,7 +6390,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -6464,11 +6464,11 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Provides mechanisms for walking through any arbitrary PHP variable",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "keywords": [
                 "debug",
                 "dump"
@@ -6478,7 +6478,7 @@
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {
@@ -6665,7 +6665,7 @@
             "authors": [
                 {
                     "name": "Lars Moelleken",
-                    "homepage": "http://www.moelleken.org/"
+                    "homepage": "https://www.moelleken.org/"
                 }
             ],
             "description": "Portable ASCII library - performance optimized (ascii) string functions for php.",
@@ -6815,7 +6815,7 @@
                 {
                     "name": "Cristian Tone",
                     "email": "cristitone@outlook.com",
-                    "homepage": "http://updivision.com",
+                    "homepage": "https://updivision.com",
                     "role": "Developer"
                 }
             ],
@@ -7199,12 +7199,12 @@
                 {
                     "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
-                    "homepage": "http://blog.astrumfutura.com"
+                    "homepage": "https://blog.astrumfutura.com"
                 },
                 {
                     "name": "Dave Marshall",
                     "email": "dave.marshall@atstsolutions.co.uk",
-                    "homepage": "http://davedevelopment.co.uk"
+                    "homepage": "https://davedevelopment.co.uk"
                 }
             ],
             "description": "Mockery is a simple yet flexible PHP mock object framework",
@@ -8467,7 +8467,7 @@
                 }
             ],
             "description": "Snapshotting of global state",
-            "homepage": "http://www.github.com/sebastianbergmann/global-state",
+            "homepage": "https://www.github.com/sebastianbergmann/global-state",
             "keywords": [
                 "global state"
             ],
@@ -8861,7 +8861,7 @@
                 {
                     "name": "Freek Van de Herten",
                     "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
+                    "homepage": "https://patie.be",
                     "role": "Developer"
                 }
             ],
@@ -8880,7 +8880,7 @@
                     "type": "github"
                 },
                 {
-                    "url": "https://spatie.be/open-source/support-us",
+                    "url": "https://patie.be/open-source/support-us",
                     "type": "other"
                 }
             ],
@@ -9180,17 +9180,17 @@
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "homepage": "https://ymfony.com/contributors"
                 }
             ],
             "description": "Loads and dumps YAML files",
-            "homepage": "https://symfony.com",
+            "homepage": "https://ymfony.com",
             "support": {
                 "source": "https://github.com/symfony/yaml/tree/v6.2.10"
             },
             "funding": [
                 {
-                    "url": "https://symfony.com/sponsor",
+                    "url": "https://ymfony.com/sponsor",
                     "type": "custom"
                 },
                 {

@@ -2,7 +2,7 @@
 jQuery Colorbox language configuration
 language: Bengali (bn)
 translated by: Arkaprava Majumder
-http://github.com/arkaindas
+https://github.com/arkaindas
 */
 jQuery.extend(jQuery.colorbox.settings, {
 current: "ছবি {current} এর {total}",

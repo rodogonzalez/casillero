@@ -3,7 +3,7 @@
   @version version: 3.2.0-beta 
   @contributors https://github.com/needim/noty/graphs/contributors 
   @documentation Examples and Documentation - https://ned.im/noty 
-  @license Licensed under the MIT licenses: http://www.opensource.org/licenses/mit-license.php 
+  @license Licensed under the MIT licenses: https://www.opensource.org/licenses/mit-license.php 
 */
 
 /*!
@@ -28,7 +28,7 @@
 
 /*!
  * Sizzle CSS Selector Engine v2.3.6
- * https://sizzlejs.com/
+ * https://izzlejs.com/
  *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
@@ -42,7 +42,7 @@
  * https://jquery.com/
  *
  * Includes Sizzle.js
- * https://sizzlejs.com/
+ * https://izzlejs.com/
  *
  * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license

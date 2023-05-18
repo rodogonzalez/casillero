@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.html or http://ckeditor.com/license
+ For licensing, see LICENSE.html or https://ckeditor.com/license
 */
 CKEDITOR.dialog.add("checkspell",function(a){function b(a,b){var d=0;return function(){"function"==typeof window.doSpell?("undefined"!=typeof c&&window.clearInterval(c),l(a)):180==d++&&window._cancelOnError(b)}}function l(b){var f=new window._SP_FCK_LangCompare,c=CKEDITOR.getUrl(a.plugins.wsc.path+"dialogs/"),e=c+"tmpFrameset.html";window.gFCKPluginName="wsc";f.setDefaulLangCode(a.config.defaultLanguage);window.doSpell({ctrl:g,lang:a.config.wsc_lang||f.getSPLangCode(a.langCode),intLang:a.config.wsc_uiLang||
 f.getSPLangCode(a.langCode),winType:d,onCancel:function(){b.hide()},onFinish:function(c){a.focus();b.getParentEditor().setData(c.value);b.hide()},staticFrame:e,framesetPath:e,iframePath:c+"ciframe.html",schemaURI:c+"wsc.css",userDictionaryName:a.config.wsc_userDictionaryName,customDictionaryName:a.config.wsc_customDictionaryIds&&a.config.wsc_customDictionaryIds.split(","),domainName:a.config.wsc_domainName});CKEDITOR.document.getById(h).setStyle("display","none");CKEDITOR.document.getById(d).setStyle("display",

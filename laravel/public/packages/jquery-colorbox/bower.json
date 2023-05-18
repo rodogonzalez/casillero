@@ -15,17 +15,17 @@
 	"authors": [
 		{
 			"name": "Jack Moore",
-			"url": "http://www.jacklmoore.com",
+			"url": "https://www.jacklmoore.com",
 			"email": "hello@jacklmoore.com"
 		}
 	],
 	"licenses": [
 		{
 			"type": "MIT",
-			"url": "http://www.opensource.org/licenses/mit-license.php"
+			"url": "https://www.opensource.org/licenses/mit-license.php"
 		}
 	],
-	"homepage": "http://www.jacklmoore.com/colorbox",
+	"homepage": "https://www.jacklmoore.com/colorbox",
 	"main": "jquery.colorbox.js",
 	"ignore": [
 		"colorbox.jquery.json",

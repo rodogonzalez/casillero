@@ -3,7 +3,7 @@
  * https://victor-valencia.github.com/bootstrap-iconpicker
  *
  * Iconset: Font Awesome 4.7.0
- * http://fortawesome.github.io/Font-Awesome/
+ * https://fortawesome.github.io/Font-Awesome/
  * ========================================================================
  * Copyright 2013-2017 Victor Valencia Rico.
  * Licensed under MIT license.

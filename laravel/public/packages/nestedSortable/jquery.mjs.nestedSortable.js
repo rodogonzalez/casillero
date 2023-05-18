@@ -8,7 +8,7 @@
  *
  * Copyright (c) 2010-2016 Manuele J Sarfatti and contributors
  * Licensed under the MIT License
- * http://www.opensource.org/licenses/mit-license.php
+ * https://www.opensource.org/licenses/mit-license.php
  */
 (function( factory ) {
 	"use strict";

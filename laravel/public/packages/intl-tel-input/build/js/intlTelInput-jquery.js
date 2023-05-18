@@ -691,7 +691,7 @@
                 }
                 if (!this.isMobile) {
                     var pos = this.telInput.getBoundingClientRect();
-                    // windowTop from https://stackoverflow.com/a/14384091/217866
+                    // windowTop from https://tackoverflow.com/a/14384091/217866
                     var windowTop = window.pageYOffset || document.documentElement.scrollTop;
                     var inputTop = pos.top + windowTop;
                     var dropdownHeight = this.countryList.offsetHeight;
@@ -1031,7 +1031,7 @@
             key: "_scrollTo",
             value: function _scrollTo(element, middle) {
                 var container = this.countryList;
-                // windowTop from https://stackoverflow.com/a/14384091/217866
+                // windowTop from https://tackoverflow.com/a/14384091/217866
                 var windowTop = window.pageYOffset || document.documentElement.scrollTop;
                 var containerHeight = container.offsetHeight;
                 var containerTop = container.getBoundingClientRect().top + windowTop;
@@ -1098,7 +1098,7 @@
                     // iterate over chars
                     for (var i = 0; i < number.length; i++) {
                         var c = number.charAt(i);
-                        // if char is number (https://stackoverflow.com/a/8935649/217866)
+                        // if char is number (https://tackoverflow.com/a/8935649/217866)
                         if (!isNaN(parseInt(c, 10))) {
                             numericChars += c;
                             // if current numericChars make a valid dial code

@@ -1281,7 +1281,7 @@ var _re_date = /^\d{2,4}[\.\/\-]\d{1,2}[\.\/\-]\d{1,2}([T ]{1}\d{1,2}[:\.]\d{2}(
 // Escape regular expression special characters
 var _re_escape_regex = new RegExp( '(\\' + [ '/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\', '$', '^', '-' ].join('|\\') + ')', 'g' );
 
-// http://en.wikipedia.org/wiki/Foreign_exchange_market
+// https://en.wikipedia.org/wiki/Foreign_exchange_market
 // - \u20BD - Russian ruble.
 // - \u20a9 - South Korean Won
 // - \u20BA - Turkish Lira
@@ -4561,7 +4561,7 @@ function _fnFilterData ( settings )
 				// If it looks like there is an HTML entity in the string,
 				// attempt to decode it so sorting works as expected. Note that
 				// we could use a single line of jQuery to do this, but the DOM
-				// method used here is much faster http://jsperf.com/html-decode
+				// method used here is much faster https://jsperf.com/html-decode
 				if ( cellData.indexOf && cellData.indexOf('&') !== -1 ) {
 					__filter_div.innerHTML = cellData;
 					cellData = __filter_div_textContent ?
@@ -6546,7 +6546,7 @@ function _fnLog( settings, level, msg, tn )
 
 	if ( tn ) {
 		msg += '. For more information about this error, please see '+
-		'http://datatables.net/tn/'+tn;
+		'https://datatables.net/tn/'+tn;
 	}
 
 	if ( ! level  ) {
@@ -9630,7 +9630,7 @@ _api_register( 'i18n()', function ( token, def, plural ) {
 /**
  * Version string for plug-ins to check compatibility. Allowed format is
  * `a.b.c-d` where: a:int, b:int, c:int, d:string(dev|beta|alpha). `d` is used
- * only for non-release builds. See http://semver.org/ for more information.
+ * only for non-release builds. See https://emver.org/ for more information.
  *  @member
  *  @type string
  *  @default Version number
@@ -10211,7 +10211,7 @@ DataTable.defaults = {
 	 * --------
 	 *
 	 * As an object, the parameters in the object are passed to
-	 * [jQuery.ajax](http://api.jquery.com/jQuery.ajax/) allowing fine control
+	 * [jQuery.ajax](https://api.jquery.com/jQuery.ajax/) allowing fine control
 	 * of the Ajax request. DataTables has a number of default parameters which
 	 * you can override using this option. Please refer to the jQuery
 	 * documentation for a full description of the options available, although
@@ -11919,7 +11919,7 @@ DataTable.defaults = {
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "language": {
-		 *          "url": "http://www.sprymedia.co.uk/dataTables/lang.txt"
+		 *          "url": "https://www.sprymedia.co.uk/dataTables/lang.txt"
 		 *        }
 		 *      } );
 		 *    } );
@@ -14984,7 +14984,7 @@ $.extend( _ext.type.order, {
 	// string
 	"string-pre": function ( a ) {
 		// This is a little complex, but faster than always calling toString,
-		// http://jsperf.com/tostring-v-check
+		// https://jsperf.com/tostring-v-check
 		return _empty(a) ?
 			'' :
 			typeof a === 'string' ?

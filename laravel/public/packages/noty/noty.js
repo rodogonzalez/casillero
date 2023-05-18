@@ -3,7 +3,7 @@
   @version version: 3.2.0-beta 
   @contributors https://github.com/needim/noty/graphs/contributors 
   @documentation Examples and Documentation - https://ned.im/noty 
-  @license Licensed under the MIT licenses: http://www.opensource.org/licenses/mit-license.php 
+  @license Licensed under the MIT licenses: https://www.opensource.org/licenses/mit-license.php 
 */
 
 (function webpackUniversalModuleDefinition(root, factory) {

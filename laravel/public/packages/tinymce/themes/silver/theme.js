@@ -32274,9 +32274,9 @@
         'style',
         'xmlns'
       ]);
-      var MATHML_NAMESPACE = 'http://www.w3.org/1998/Math/MathML';
-      var SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
-      var HTML_NAMESPACE = 'http://www.w3.org/1999/xhtml';
+      var MATHML_NAMESPACE = 'https://www.w3.org/1998/Math/MathML';
+      var SVG_NAMESPACE = 'https://www.w3.org/2000/svg';
+      var HTML_NAMESPACE = 'https://www.w3.org/1999/xhtml';
       var NAMESPACE = HTML_NAMESPACE;
       var IS_EMPTY_INPUT = false;
       var PARSER_MEDIA_TYPE;
@@ -32516,7 +32516,7 @@
           leadingWhitespace = matches && matches[0];
         }
         if (PARSER_MEDIA_TYPE === 'application/xhtml+xml') {
-          dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
+          dirty = '<html xmlns="https://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
         }
         var dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
         if (NAMESPACE === HTML_NAMESPACE) {

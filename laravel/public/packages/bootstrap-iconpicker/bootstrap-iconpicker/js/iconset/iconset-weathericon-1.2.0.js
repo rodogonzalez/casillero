@@ -3,7 +3,7 @@
  * https://victor-valencia.github.com/bootstrap-iconpicker
  *
  * Iconset: Weather Icons 1.2.0
- * http://erikflowers.github.io/weather-icons/
+ * https://erikflowers.github.io/weather-icons/
  * ========================================================================
  * Copyright 2013-2017 Victor Valencia Rico.
  * Licensed under MIT license.

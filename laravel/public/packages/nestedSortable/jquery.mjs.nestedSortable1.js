@@ -1,14 +1,14 @@
 /*
  * jQuery UI Nested Sortable
  * v 1.3.5 / 21 jun 2012
- * http://mjsarfatti.com/code/nestedSortable
+ * https://mjsarfatti.com/code/nestedSortable
  *
  * Depends on:
  *	 jquery.ui.sortable.js 1.8+
  *
  * Copyright (c) 2010-2012 Manuele J Sarfatti
  * Licensed under the MIT License
- * http://www.opensource.org/licenses/mit-license.php
+ * https://www.opensource.org/licenses/mit-license.php
  */
 
 (function($) {
