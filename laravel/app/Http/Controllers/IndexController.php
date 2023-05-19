@@ -114,7 +114,7 @@ class IndexController extends Controller
         //$unlock_link = env('APP_URL') . ;
         $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
 
-        $qrcode = (new QRCode($options))->render($unlock_link);
+        $qrcode = (new QRCode($options))->render(md5($LockerOrder->id));
 
         return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
     }

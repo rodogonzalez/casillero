@@ -12,9 +12,16 @@ const camQrResultTimestamp = document.getElementById('cam-qr-result-timestamp');
 const fileSelector = document.getElementById('file-selector');
 const fileQrResult = document.getElementById('file-qr-result');
 
+const QR_detected = document.getElementById('QR_detected');
+
+
+
+
 function setResult(label, result) {
-    console.log(result.data);
+    //console.log(result.data);
+
     label.textContent = result.data;
+    QR_detected.value=result.data;
     camQrResultTimestamp.textContent = new Date().toString();
     label.style.color = 'teal';
     clearTimeout(label.highlightTimeout);

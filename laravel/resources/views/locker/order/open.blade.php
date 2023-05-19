@@ -6,63 +6,64 @@
 
     <h1>{{ __('messages.scan.camera') }}</h1>
     <div id="preview"></div>
-    <input name="opening_code" placeholder="{{ __('messages.enter.code') }}">
-
+    <input name="opening_code" id="QR_detected" placeholder="{{ __('messages.enter.code') }}">
+    <hr>
     <div id="video-container">
         <video id="qr-video"></video>
     </div>
-    <div>
-        <label>
-            Highlight Style
-            <select id="scan-region-highlight-style-select">
-                <option value="default-style">Default style</option>
-                <option value="example-style-1">Example custom style 1</option>
-                <option value="example-style-2">Example custom style 2</option>
+    <div style="display:none;">
+
+        <div style="display:none;">
+            <label>
+                Highlight Style
+                <select id="scan-region-highlight-style-select">
+                    <option value="default-style">Default style</option>
+                    <option value="example-style-1">Example custom style 1</option>
+                    <option value="example-style-2">Example custom style 2</option>
+                </select>
+            </label>
+            <label>
+                <input id="show-scan-region" type="checkbox">
+                Show scan region canvas
+            </label>
+        </div>
+        <div>
+            <select id="inversion-mode-select">
+                <option value="original">Scan original (dark QR code on bright background)</option>
+                <option value="invert">Scan with inverted colors (bright QR code on dark background)</option>
+                <option value="both">Scan both</option>
             </select>
-        </label>
-        <label>
-            <input id="show-scan-region" type="checkbox">
-            Show scan region canvas
-        </label>
-    </div>
-    <div>
-        <select id="inversion-mode-select">
-            <option value="original">Scan original (dark QR code on bright background)</option>
-            <option value="invert">Scan with inverted colors (bright QR code on dark background)</option>
-            <option value="both">Scan both</option>
-        </select>
+            <br>
+        </div>
+        <b>Device has camera: </b>
+        <span id="cam-has-camera"></span>
         <br>
-    </div>
-    <b>Device has camera: </b>
-    <span id="cam-has-camera"></span>
-    <br>
-    <div>
-        <b>Preferred camera:</b>
-        <select id="cam-list">
-            <option value="environment" selected>Environment Facing (default)</option>
-            <option value="user">User Facing</option>
-        </select>
-    </div>
-    <b>Camera has flash: </b>
-    <span id="cam-has-flash"></span>
-    <div>
-        <button id="flash-toggle">📸 Flash: <span id="flash-state">off</span></button>
-    </div>
-    <br>
-    <b>Detected QR code: </b>
-    <span id="cam-qr-result">None</span>
-    <br>
-    <b>Last detected at: </b>
-    <span id="cam-qr-result-timestamp"></span>
-    <br>
-    <button id="start-button">Start</button>
-    <button id="stop-button">Stop</button>
-    <hr>
-    
-    <h1>Scan from File:</h1>
-    <input type="file" id="file-selector">
-    <b>Detected QR code: </b>
-    <span id="file-qr-result">None</span>
+        <div>
+            <b>Preferred camera:</b>
+            <select id="cam-list">
+                <option value="environment" selected>Environment Facing (default)</option>
+                <option value="user">User Facing</option>
+            </select>
+        </div>
+        <b>Camera has flash: </b>
+        <span id="cam-has-flash"></span>
+        <div>
+            <button id="flash-toggle">📸 Flash: <span id="flash-state">off</span></button>
+        </div>
+        <br>
+        <b>Detected QR code: </b>
+        <span id="cam-qr-result">None</span>
+        <br>
+        <b>Last detected at: </b>
+        <span id="cam-qr-result-timestamp"></span>
+        <br>
+        <button id="start-button">Start</button>
+        <button id="stop-button">Stop</button>
+        <hr>
 
-
-    @endsection
+        <h1>Scan from File:</h1>
+        <input type="file" id="file-selector">
+        <b>Detected QR code: </b>
+        <span id="file-qr-result">None</span>
+    </div>
+@endsection
