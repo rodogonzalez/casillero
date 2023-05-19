@@ -16,14 +16,10 @@
                             {{ __('messages.use') }}
                         </a>
                     @else
-                        <i class="la la-lock"></i> <a href="">[ {{ __('messages.open') }} ]</a>
+                        <i class="la la-lock"></i> <a href="/open">[ {{ __('messages.open') }} ]</a>
                     @endif
                     <div class="status">{{ __('messages.' .$data['status'] ) }} </div>
-                    @if ($data['status']=="in-use")
-                        <a href="/open" class="btn button">
-                            {{ __('messages.open') }}
-                        </a>
-                    @endif
+                    
                 </div>
             @endforeach
         @endforeach
