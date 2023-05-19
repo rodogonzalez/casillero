@@ -1,0 +1,25 @@
+.lockers-container{
+    max-width: 30vw;
+
+}
+.locker{
+
+    background-color:#ccc;
+    margin:3px;
+    width:30%;
+    border:3px solid #ddd;
+    height:100px;
+    display:inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+.in-use{
+    color:red;
+}
+.available{
+    color:black;
+}
+.out-of-service{
+    color:black;
+}
