@@ -6,7 +6,10 @@
 
     <h1>{{ __('messages.scan.camera') }}</h1>
     <div id="preview"></div>
+    <form>
     <input name="opening_code" id="QR_detected" placeholder="{{ __('messages.enter.code') }}">
+    <input type="submit" class="btn button" value="{{ __('messages.open') }}">
+    </form>
     <hr>
     <div id="video-container">
         <video id="qr-video"></video>

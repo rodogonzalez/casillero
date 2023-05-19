@@ -29,3 +29,13 @@
 .out-of-service{
     background-color:orangered;
 }
+
+#video-container{
+    width: 100%;
+    text-align: center;
+
+}
+video{
+    width: 25%;
+    text-align: center;
+}
