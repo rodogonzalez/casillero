@@ -5,7 +5,7 @@
     "src": "node_modules/qr-scanner/qr-scanner-worker.min.js"
   },
   "resources/css/app.css": {
-    "file": "assets/app-718e880d.css",
+    "file": "assets/app-6c80937e.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
