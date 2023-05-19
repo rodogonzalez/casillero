@@ -1,5 +1,6 @@
 @extends(backpack_view('blank'))
 @section('content')
-    <h1>Thank you! Please close the locker </h1>    
-    
+    <h1> 
+    {{ __('messages.thankyou') }}
+</h1>    
 @endsection

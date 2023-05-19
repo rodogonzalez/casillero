@@ -22,6 +22,9 @@ Route::get('request-locker/{device_id}', [IndexController::class, 'request_locke
 Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] )->name('start')->middleware('signed');;
 Route::get('u/{order_id}', [IndexController::class, 'unlock_order'] )->name('unlock')->middleware('signed');
 
-Route::post('device-feed/{device_id}', [IndexController::class, 'get_device_feed'] );
+Route::get('open', [IndexController::class, 'show_open_locker_page'] );
 
-Route::get('reset-device-feed/{device_id}', [IndexController::class, 'reset_device_feed'] );
+
+//Route::post('device-feed/{device_id}', [IndexController::class, 'get_device_feed'] );
+
+//Route::get('reset-device-feed/{device_id}', [IndexController::class, 'reset_device_feed'] );

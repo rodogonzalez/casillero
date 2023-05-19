@@ -82,88 +82,17 @@ class IndexController extends Controller
     {
 
         if (! request()->hasValidSignature()) {
+
             abort(401);
+
         }
+
         $RaspberryDevice = RaspberryDevice::where('id', $device_id)->first();
-
-        /*
-        $data = [
-            'payment_method'       => 'bacs',
-            'payment_method_title' => 'Direct Bank Transfer',
-            'set_paid'             => true,
-            'billing'              => [
-                'first_name' => 'John',
-                'last_name'  => 'Doe',
-                'address_1'  => '969 Market',
-                'address_2'  => '',
-                'city'       => 'San Francisco',
-                'state'      => 'CA',
-                'postcode'   => '94103',
-                'country'    => 'US',
-                'email'      => 'john.doe@example.com',
-                'phone'      => '(555) 555-5555',
-            ],
-            'shipping'             => [
-                'first_name' => 'John',
-                'last_name'  => 'Doe',
-                'address_1'  => '969 Market',
-                'address_2'  => '',
-                'city'       => 'San Francisco',
-                'state'      => 'CA',
-                'postcode'   => '94103',
-                'country'    => 'US',
-            ],
-            'line_items'           => [
-                [
-                    'product_id' => 40,
-                    'quantity'   => 2,
-                ],
-                [
-                    'product_id'   => 127,
-                    'variation_id' => 23,
-                    'quantity'     => 1,
-                ],
-            ],
-        ];
-
-
-
-
-
-*/
-
-        $data = [
-            'payment_method'       => '´bacs',
-            'payment_method_title' => 'Direct Bank Transfer',
-            'set_paid'             => true,
-            //'payment_method_title' => 'Pay with crypto',
-            /*
-            'billing'              => [
-                'first_name' => 'John',
-                'last_name'  => 'Doe',
-                'address_1'  => '969 Market',
-                'address_2'  => '',
-                'city'       => 'San Francisco',
-                'state'      => 'CA',
-                'postcode'   => '94103',
-                'country'    => 'US',
-                'email'      => 'john.doe@example.com',
-                'phone'      => '(555) 555-5555',
-            ],*/
-            'line_items' => [
-                [
-                    'product_id' => env('WOOCOMMERCE_PRODUCT_ID'),
-                    'quantity'   => 1,
-                ]
-            ],
-        ];
-        //dd($data);
-        //$woo_order = Order::create($data);
-        //dd($woo_order);
+        
         $LockerOrder = LockerOrder::create([
             'raspberry_device_id' => $device_id,
             'gpio_port'           => $port,
-            'woo_order_open'      => 777,
+            'woo_order_open'      => 0,
             'opening_paid_at'     => now(),
         ]);
 
@@ -188,6 +117,10 @@ class IndexController extends Controller
         $qrcode = (new QRCode($options))->render($unlock_link);
 
         return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
+    }
+
+    public function show_open_locker_page(){
+        return view('locker.order.open', []);
     }
 
     public function unlock_order($order_id)
