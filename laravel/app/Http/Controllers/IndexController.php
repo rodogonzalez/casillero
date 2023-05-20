@@ -151,7 +151,7 @@ class IndexController extends Controller
             'itemSubtotalAmount' => (FLOAT) $amount                  // USD
         ];
 
-        $payment_url = \Hexters\CoinPayment\CoinPayment::generatelink($transaction);
+        $payment_url = CoinPayment::generatelink($transaction);
 
         //dd($time_used,$LockerOrder);
         return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'payment_url' => $payment_url]);

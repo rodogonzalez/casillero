@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +15,16 @@ use App\Http\Controllers\IndexController;
 */
 
 Route::get('/', function () {
-    return redirect('request-locker/' .  env('RASPBERRY_DEVICE_ID'));
-
+    return redirect('request-locker/' . env('RASPBERRY_DEVICE_ID'));
 });
-Route::get('request-locker/{device_id}', [IndexController::class, 'request_locker'] );
-Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'] )->name('start')->middleware('signed');;
-Route::get('u/{order_id}', [IndexController::class, 'unlock_order'] )->name('unlock')->middleware('signed');
+Route::get('request-locker/{device_id}', [IndexController::class, 'request_locker']);
+Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'])->name('start')->middleware('signed');;
+Route::get('u/{order_id}', [IndexController::class, 'unlock_order'])->name('unlock')->middleware('signed');
 
-Route::get('open', [IndexController::class, 'show_open_locker_page'] );
-Route::get('unlock', [IndexController::class, 'request_open_locker'] );
+Route::get('open', [IndexController::class, 'show_open_locker_page']);
+Route::get('unlock', [IndexController::class, 'request_open_locker']);
 
-Route::post('pay', [IndexController::class, 'request_payment'] )->name('pay')->middleware('signed');;
+Route::post('pay', [IndexController::class, 'request_payment'])->name('pay')->middleware('signed');;
 //
 
 //Route::get('reset-device-feed/{device_id}', [IndexController::class, 'reset_device_feed'] );
