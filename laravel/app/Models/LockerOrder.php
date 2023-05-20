@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,4 +22,20 @@ class LockerOrder extends Model
         'opening_paid_at',
         'closening_paid_at'
     ];
+
+    private function differenceInHours($startdate, $enddate)
+    {      
+        $start_datetime = new DateTime($startdate); 
+        $diff = $start_datetime->diff(new DateTime(now()));                        
+        return (object) ['years'=>$diff->y,'months'=>$diff->m, 'days' => $diff->days,'hours' => $diff->h,'minutes' => $diff->i];
+    }
+
+    public function getCurrentDurationAttribute()
+    {       
+
+        $time_used=  $this->differenceInHours($this->opening_paid_at, now());     
+
+        return $time_used;
+                
+    }
 }

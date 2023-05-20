@@ -25,7 +25,7 @@ Route::get('u/{order_id}', [IndexController::class, 'unlock_order'] )->name('unl
 Route::get('open', [IndexController::class, 'show_open_locker_page'] );
 Route::get('unlock', [IndexController::class, 'request_open_locker'] );
 
-
-//Route::post('device-feed/{device_id}', [IndexController::class, 'get_device_feed'] );
+Route::post('pay', [IndexController::class, 'request_payment'] )->name('pay')->middleware('signed');;
+//
 
 //Route::get('reset-device-feed/{device_id}', [IndexController::class, 'reset_device_feed'] );

@@ -6,7 +6,7 @@
 
     <h1>{{ __('messages.scan.camera') }}</h1>
     <div id="preview">
-        <form id="frmRequest" action="/unlock/?" method="get">
+        <form id="frmRequest" action="{{ $signed_payment_link }}" method="post" >
             <input name="opening_code" id="QR_detected" placeholder="{{ __('messages.enter.code') }}">
             <input type="submit" class="btn button" value="{{ __('messages.open') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LockerOrder;
 use App\Models\ProcessQueue;
 use App\Models\RaspberryDevice;
+use Carbon\Carbon;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 use Illuminate\Http\Request;
@@ -20,7 +21,6 @@ class IndexController extends Controller
     {
         $RaspberryDevice = RaspberryDevice::where('id', $device_id)->first();
         $locker_ports    = [
-            // the key will be stored in the db, the value will be shown as label;
             '4'  => '1',
             '9'  => '2',
             '10' => '3',
@@ -39,14 +39,8 @@ class IndexController extends Controller
 
         foreach ($locker_ports as $locker_port => $label) {
             $locker_current_status = $RaspberryDevice->{"gpio_{$locker_port}_status"};
-
-            $unlock_link = URL::signedRoute('start', ['device_id' => $device_id, 'locker_id' => $locker_port]);
-            //$unlock_link = URL::temporarySignedRoute('start', now()->addSeconds(30) , ['device_id' => $device_id, 'locker_id' => $locker_port]);
-
-            //if (in_array($locker_current_status, ['available', '', 'Available', null, 0])) {
-            $ports_availables[] = [$locker_port => ['caption' => $label, 'status' => $locker_current_status, 'link' => $unlock_link]];
-
-            //}
+            $unlock_link           = URL::signedRoute('start', ['device_id' => $device_id, 'locker_id' => $locker_port]);
+            $ports_availables[]    = [$locker_port => ['caption' => $label, 'status' => $locker_current_status, 'link' => $unlock_link]];
         }
 
         return view('device_user_view', ['device' => $RaspberryDevice, 'lockers' => $ports_availables]);
@@ -68,7 +62,6 @@ class IndexController extends Controller
     public function get_device_feed($device_id)
     {
         //return json_encode);
-
         $commands = Cache::rememberForever('device_' . $device_id, function () {
             return \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();;
         });
@@ -82,13 +75,9 @@ class IndexController extends Controller
         $order_id    = request()->input('opening_code');
         $LockerOrder = LockerOrder::whereRaw("md5(id) =  '{$order_id}'")->first();
         $order_id    = $LockerOrder->id;
-
         $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
-        
+
         return redirect($unlock_link);
-
-
-        //
     }
 
     public function start_order($device_id, $port)
@@ -98,21 +87,18 @@ class IndexController extends Controller
         }
 
         $RaspberryDevice = RaspberryDevice::where('id', $device_id)->first();
-
-        $LockerOrder = LockerOrder::create([
+        $LockerOrder     = LockerOrder::create([
             'raspberry_device_id' => $device_id,
             'gpio_port'           => $port,
             'woo_order_open'      => 0,
             'opening_paid_at'     => now(),
         ]);
-
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $device_id,
             'gpio_port'           => $port,
             'command'             => 'in-use',
             'executed'            => 0
         ]);
-
         $options = new QROptions(
             [
                 'eccLevel'   => QRCode::ECC_L,
@@ -120,39 +106,54 @@ class IndexController extends Controller
                 'version'    => 5,
             ]
         );
-
         //$unlock_link = env('APP_URL') . ;
         $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
-
-        $qrcode = (new QRCode($options))->render(md5($LockerOrder->id));
+        $qrcode      = (new QRCode($options))->render(md5($LockerOrder->id));
 
         return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
     }
 
     public function show_open_locker_page()
     {
-        return view('locker.order.open', []);
+        $signed_payment_link = URL::temporarySignedRoute('pay', now()->addMinutes(5), []);
+
+        //URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
+        return view('locker.order.open', ['signed_payment_link' => $signed_payment_link]);
+    }
+
+    public function request_payment()
+    {
+        $order_id        = request()->input('opening_code');
+        $hours_billabled = 0;
+
+        $LockerOrder = LockerOrder::whereRaw("md5(id) =  '{$order_id}'")->first();
+        $time_used   = $LockerOrder->current_duration;
+        if ($time_used->hours == 0) {
+            $hours_billabled = 1;
+        } elseif ($time_used->minutes != 0) {
+            $hours_billabled = $time_used->hours + 1;
+        }
+
+        //dd($time_used,$LockerOrder);
+        return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled]);
     }
 
     private function unlock_locker_data($order_id)
     {
         $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
-
         if ($LockerOrder->closening_paid_at != null) {
             abort(404);
+
             return;
         }
-
         $LockerOrder->closening_paid_at = now();
         $LockerOrder->save();
-
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $LockerOrder->raspberry_device_id,
             'gpio_port'           => $LockerOrder->gpio_port,
             'command'             => 'available',
             'executed'            => 0
         ]);
-
     }
 
     public function unlock_order($order_id)
