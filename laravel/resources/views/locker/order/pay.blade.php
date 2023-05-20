@@ -13,6 +13,6 @@
         {{ $time_billabled }}
         </div>
 
-        <button onclick="alert('keep working :) ')">{{ __('messages.pay') }}</button>
+        <a href="{{ $payment_url }}"><h1>{{ __('messages.pay') }}</h1></a>
     </div>
 @endsection

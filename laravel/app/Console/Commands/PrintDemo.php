@@ -141,41 +141,9 @@ class PrintDemo extends Command
         $printer->feed();
         $printer->cut();
 
-        /* Graphics - this demo will not work on some non-Epson printers */
-        try {
-            $logo     = EscposImage::load('resources/escpos-php.png', false);
-            $imgModes = array(
-                Printer::IMG_DEFAULT,
-                Printer::IMG_DOUBLE_WIDTH,
-                Printer::IMG_DOUBLE_HEIGHT,
-                Printer::IMG_DOUBLE_WIDTH | Printer::IMG_DOUBLE_HEIGHT
-            );
-            foreach ($imgModes as $mode) {
-                $printer->graphics($logo, $mode);
-            }
-        } catch (Exception $e) {
-            /* Images not supported on your PHP, or image file not found */
-            $printer->text($e->getMessage() . "\n");
-        }
-        $printer->cut();
+        
 
-        /* Bit image */
-        try {
-            $logo     = EscposImage::load('resources/escpos-php.png', false);
-            $imgModes = array(
-                Printer::IMG_DEFAULT,
-                Printer::IMG_DOUBLE_WIDTH,
-                Printer::IMG_DOUBLE_HEIGHT,
-                Printer::IMG_DOUBLE_WIDTH | Printer::IMG_DOUBLE_HEIGHT
-            );
-            foreach ($imgModes as $mode) {
-                $printer->bitImage($logo, $mode);
-            }
-        } catch (Exception $e) {
-            /* Images not supported on your PHP, or image file not found */
-            $printer->text($e->getMessage() . "\n");
-        }
-        $printer->cut();
+                
 
         /* QR Code - see also the more in-depth demo at qr-code.php */
         $testStr = 'Testing 123';

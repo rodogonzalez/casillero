@@ -140,6 +140,10 @@ class ComposerStaticInit6a0f4c67cf786cf08264955e55c35ca5
             'Illuminate\\Support\\' => 19,
             'Illuminate\\' => 11,
         ),
+        'H' => 
+        array (
+            'Hexters\\CoinPayment\\' => 20,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\UriTemplate\\' => 23,
@@ -474,6 +478,10 @@ class ComposerStaticInit6a0f4c67cf786cf08264955e55c35ca5
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Hexters\\CoinPayment\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hexters/coinpayment/src',
+        ),
         'GuzzleHttp\\UriTemplate\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/uri-template/src',
@@ -614,6 +622,7 @@ class ComposerStaticInit6a0f4c67cf786cf08264955e55c35ca5
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\PrintDemo' => __DIR__ . '/../..' . '/app/Console/Commands/PrintDemo.php',
         'App\\Console\\Commands\\process_gpio_queue' => __DIR__ . '/../..' . '/app/Console/Commands/process_gpio_queue.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -2184,6 +2193,23 @@ class ComposerStaticInit6a0f4c67cf786cf08264955e55c35ca5
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Hexters\\CoinPayment\\CoinPayment' => __DIR__ . '/..' . '/hexters/coinpayment/src/CoinPayment.php',
+        'Hexters\\CoinPayment\\Console\\InstallationCommand' => __DIR__ . '/..' . '/hexters/coinpayment/src/Console/InstallationCommand.php',
+        'Hexters\\CoinPayment\\Console\\LlsCommand' => __DIR__ . '/..' . '/hexters/coinpayment/src/Console/LlsCommand.php',
+        'Hexters\\CoinPayment\\Database\\Seeders\\CoinPaymentDatabaseSeeder' => __DIR__ . '/..' . '/hexters/coinpayment/src/Database/Seeders/CoinPaymentDatabaseSeeder.php',
+        'Hexters\\CoinPayment\\Emails\\IPNErrorMail' => __DIR__ . '/..' . '/hexters/coinpayment/src/Emails/IPNErrorMail.php',
+        'Hexters\\CoinPayment\\Entities\\CoinpaymentTransaction' => __DIR__ . '/..' . '/hexters/coinpayment/src/Entities/CoinpaymentTransaction.php',
+        'Hexters\\CoinPayment\\Entities\\CoinpaymentTransactionItem' => __DIR__ . '/..' . '/hexters/coinpayment/src/Entities/CoinpaymentTransactionItem.php',
+        'Hexters\\CoinPayment\\Exceptions\\CoinPaymentException' => __DIR__ . '/..' . '/hexters/coinpayment/src/Exceptions/CoinPaymentException.php',
+        'Hexters\\CoinPayment\\Helpers\\CoinPaymentHelper' => __DIR__ . '/..' . '/hexters/coinpayment/src/Helpers/CoinPaymentHelper.php',
+        'Hexters\\CoinPayment\\Http\\Controllers\\AjaxController' => __DIR__ . '/..' . '/hexters/coinpayment/src/Http/Controllers/AjaxController.php',
+        'Hexters\\CoinPayment\\Http\\Controllers\\CoinPaymentController' => __DIR__ . '/..' . '/hexters/coinpayment/src/Http/Controllers/CoinPaymentController.php',
+        'Hexters\\CoinPayment\\Http\\Controllers\\IPNController' => __DIR__ . '/..' . '/hexters/coinpayment/src/Http/Controllers/IPNController.php',
+        'Hexters\\CoinPayment\\Http\\Controllers\\MakeTransactionController' => __DIR__ . '/..' . '/hexters/coinpayment/src/Http/Controllers/MakeTransactionController.php',
+        'Hexters\\CoinPayment\\Http\\Middleware\\CoinpaymentAuthMiddleware' => __DIR__ . '/..' . '/hexters/coinpayment/src/Http/Middleware/CoinpaymentAuthMiddleware.php',
+        'Hexters\\CoinPayment\\Providers\\CoinPaymentServiceProvider' => __DIR__ . '/..' . '/hexters/coinpayment/src/Providers/CoinPaymentServiceProvider.php',
+        'Hexters\\CoinPayment\\Providers\\RouteServiceProvider' => __DIR__ . '/..' . '/hexters/coinpayment/src/Providers/RouteServiceProvider.php',
+        'Hexters\\CoinPayment\\Traits\\ApiCallTrait' => __DIR__ . '/..' . '/hexters/coinpayment/src/Traits/ApiCallTrait.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Events\\GateEvaluated' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Events/GateEvaluated.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',

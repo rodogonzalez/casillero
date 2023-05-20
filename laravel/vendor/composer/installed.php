@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'b5f6d24c27c6983d742083e4360ce13842be3709',
+        'reference' => '8a30abd5381b01ad1aeb91e094457f1b6e9ab00b',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -292,6 +292,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'hexters/coinpayment' => array(
+            'pretty_version' => 'v3.0.0',
+            'version' => '3.0.0.0',
+            'reference' => '029ad3bd29361bdcdd6bca7008272c43a3dffb9f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../hexters/coinpayment',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'illuminate/auth' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -508,7 +517,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'b5f6d24c27c6983d742083e4360ce13842be3709',
+            'reference' => '8a30abd5381b01ad1aeb91e094457f1b6e9ab00b',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

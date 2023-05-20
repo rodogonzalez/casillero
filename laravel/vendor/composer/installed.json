@@ -2373,6 +2373,63 @@
             "install-path": "../hamcrest/hamcrest-php"
         },
         {
+            "name": "hexters/coinpayment",
+            "version": "v3.0.0",
+            "version_normalized": "3.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hexters/CoinPayment.git",
+                "reference": "029ad3bd29361bdcdd6bca7008272c43a3dffb9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hexters/CoinPayment/zipball/029ad3bd29361bdcdd6bca7008272c43a3dffb9f",
+                "reference": "029ad3bd29361bdcdd6bca7008272c43a3dffb9f",
+                "shasum": ""
+            },
+            "time": "2021-01-09T22:09:24+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hexters\\CoinPayment\\Providers\\CoinPaymentServiceProvider"
+                    ],
+                    "aliases": {
+                        "CoinPayment": "Hexters\\CoinPayment\\CoinPayment"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Hexters\\CoinPayment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saifullah Syahidin",
+                    "email": "hexters@gmail.com"
+                }
+            ],
+            "description": "CoinPayment is a Laravel module for handling transactions from CoinPayment like a create transaction, history transaction, etc.",
+            "keywords": [
+                "Coinpayment",
+                "bitcoin",
+                "cryptocurrency",
+                "laravel",
+                "payment gateway"
+            ],
+            "support": {
+                "issues": "https://github.com/hexters/CoinPayment/issues",
+                "source": "https://github.com/hexters/CoinPayment/tree/v3.0.0"
+            },
+            "install-path": "../hexters/coinpayment"
+        },
+        {
             "name": "laravel/framework",
             "version": "v10.11.0",
             "version_normalized": "10.11.0.0",

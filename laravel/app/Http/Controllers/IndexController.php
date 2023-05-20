@@ -8,6 +8,7 @@ use App\Models\RaspberryDevice;
 use Carbon\Carbon;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
+use Hexters\CoinPayment\CoinPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\URL;
@@ -133,9 +134,27 @@ class IndexController extends Controller
         } elseif ($time_used->minutes != 0) {
             $hours_billabled = $time_used->hours + 1;
         }
+//dd($hours_billabled , env('HOUR_RATE'));
+        $amount = $hours_billabled * env('HOUR_RATE');
+
+        $transaction['order_id']     = md5($LockerOrder->id);        // invoice number
+        $transaction['amountTotal']  = (FLOAT) $amount;
+        $transaction['note']         = 'Locker Use';
+        $transaction['buyer_name']   = 'self';
+        $transaction['buyer_email']  = 'buyer@pagacripto.com';
+        $transaction['redirect_url'] = url('/back_to_tarnsaction');  // When Transaction was comleted
+        $transaction['cancel_url']   = url('/back_to_tarnsaction');  // When user click cancel link
+        $transaction['items'][]      = [
+            'itemDescription'    => 'Time',
+            'itemPrice'          => (FLOAT) $amount,                 // USD
+            'itemQty'            => (INT) 1,
+            'itemSubtotalAmount' => (FLOAT) $amount                  // USD
+        ];
+
+        $payment_url = CoinPayment::generatelink($transaction);
 
         //dd($time_used,$LockerOrder);
-        return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled]);
+        return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'payment_url' => $payment_url]);
     }
 
     private function unlock_locker_data($order_id)
