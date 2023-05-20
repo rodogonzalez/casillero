@@ -22,16 +22,18 @@
 
 .in-use{
     background-color:darkgray;
+    color: red;
 }
 .available{
     background-color:grey;
+    color: green;
 }
 .out-of-service{
     background-color:orangered;
 }
 
 #video-container{
-    width: 40vw;
+    width: 80vw;
     text-align: center;
 
 }

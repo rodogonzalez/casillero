@@ -11,14 +11,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\URL;
 use Order;
+use Symfony\Component\Routing\Matcher\RedirectableUrlMatcherInterface;
 
 class IndexController extends Controller
 {
     //
     public function request_locker($device_id)
     {
-        
-
         $RaspberryDevice = RaspberryDevice::where('id', $device_id)->first();
         $locker_ports    = [
             // the key will be stored in the db, the value will be shown as label;
@@ -45,7 +44,7 @@ class IndexController extends Controller
             //$unlock_link = URL::temporarySignedRoute('start', now()->addSeconds(30) , ['device_id' => $device_id, 'locker_id' => $locker_port]);
 
             //if (in_array($locker_current_status, ['available', '', 'Available', null, 0])) {
-            $ports_availables[] = [$locker_port => ['caption' => $label, 'status' => $locker_current_status , 'link' => $unlock_link]];
+            $ports_availables[] = [$locker_port => ['caption' => $label, 'status' => $locker_current_status, 'link' => $unlock_link]];
 
             //}
         }
@@ -78,17 +77,28 @@ class IndexController extends Controller
             ->json($commands);
     }
 
+    public function request_open_locker()
+    {
+        $order_id    = request()->input('opening_code');
+        $LockerOrder = LockerOrder::whereRaw("md5(id) =  '{$order_id}'")->first();
+        $order_id    = $LockerOrder->id;
+
+        $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
+        
+        return redirect($unlock_link);
+
+
+        //
+    }
+
     public function start_order($device_id, $port)
     {
-
-        if (! request()->hasValidSignature()) {
-
+        if (!request()->hasValidSignature()) {
             abort(401);
-
         }
 
         $RaspberryDevice = RaspberryDevice::where('id', $device_id)->first();
-        
+
         $LockerOrder = LockerOrder::create([
             'raspberry_device_id' => $device_id,
             'gpio_port'           => $port,
@@ -119,22 +129,22 @@ class IndexController extends Controller
         return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
     }
 
-    public function show_open_locker_page(){
+    public function show_open_locker_page()
+    {
         return view('locker.order.open', []);
     }
 
-    public function unlock_order($order_id)
+    private function unlock_locker_data($order_id)
     {
         $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
 
-        //dd($LockerOrder);
         if ($LockerOrder->closening_paid_at != null) {
             abort(404);
+            return;
         }
-        $LockerOrder->closening_paid_at = now();
 
+        $LockerOrder->closening_paid_at = now();
         $LockerOrder->save();
-        //sleep(15);
 
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $LockerOrder->raspberry_device_id,
@@ -142,7 +152,12 @@ class IndexController extends Controller
             'command'             => 'available',
             'executed'            => 0
         ]);
-        Cache::forget('device_' . $LockerOrder->raspberry_device_id);
+
+    }
+
+    public function unlock_order($order_id)
+    {
+        $this->unlock_locker_data($order_id);
 
         return response()->view('locker.order.closed')->header('Refresh', '5;url=/');
     }

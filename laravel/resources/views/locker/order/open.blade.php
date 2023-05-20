@@ -5,15 +5,20 @@
 
 
     <h1>{{ __('messages.scan.camera') }}</h1>
-    <div id="preview"></div>
-    <form>
-    <input name="opening_code" id="QR_detected" placeholder="{{ __('messages.enter.code') }}">
-    <input type="submit" class="btn button" value="{{ __('messages.open') }}">
-    </form>
-    <hr>
-    <div id="video-container">
-        <video id="qr-video"></video>
+    <div id="preview">
+        <form id="frmRequest" action="/open/?" method="post">
+            <input name="opening_code" id="QR_detected" placeholder="{{ __('messages.enter.code') }}">
+            <input type="submit" class="btn button" value="{{ __('messages.open') }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+        </form>
+
+        <hr>
+        <div id="video-container">
+            <video id="qr-video"></video>
+        </div>
     </div>
+    <div id="opening_caption" style="display:none;"><h1> {{ __('messages.opening') }}</h1></div>
+
     <div style="display:none;">
 
         <div style="display:none;">

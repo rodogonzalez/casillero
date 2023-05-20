@@ -13,7 +13,9 @@ const fileSelector = document.getElementById('file-selector');
 const fileQrResult = document.getElementById('file-qr-result');
 
 const QR_detected = document.getElementById('QR_detected');
-
+const frmRequest = document.getElementById('frmRequest');
+const pageContent = document.getElementById('preview');
+const opening_caption = document.getElementById('opening_caption');
 
 
 
@@ -26,6 +28,9 @@ function setResult(label, result) {
     label.style.color = 'teal';
     clearTimeout(label.highlightTimeout);
     label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+    pageContent.style.display="none";
+    opening_caption.style.display="block";
+    frmRequest.submit();
 }
 
 // ####### Web Cam Scanning #######
