@@ -84,7 +84,7 @@ class IndexController extends Controller
         $order_id    = $LockerOrder->id;
 
         $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
-        dd($unlock_link);
+        
         return redirect($unlock_link);
 
 

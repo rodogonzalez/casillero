@@ -23,7 +23,7 @@ Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::cla
 Route::get('u/{order_id}', [IndexController::class, 'unlock_order'] )->name('unlock')->middleware('signed');
 
 Route::get('open', [IndexController::class, 'show_open_locker_page'] );
-Route::post('unlock', [IndexController::class, 'request_open_locker'] );
+Route::get('unlock', [IndexController::class, 'request_open_locker'] );
 
 
 //Route::post('device-feed/{device_id}', [IndexController::class, 'get_device_feed'] );
