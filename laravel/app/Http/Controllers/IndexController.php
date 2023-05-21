@@ -156,8 +156,8 @@ class IndexController extends Controller
         $data = [
             'payment_method'       => 'paypal',
             'payment_method_title' => 'Paypal',
-            'set_paid'             => false,            
-            'line_items' => [
+            'set_paid'             => false,
+            'line_items'           => [
                 [
                     'product_id' => env('WOOCOMMERCE_PRODUCT_ID'),
                     'quantity'   => $hours_billabled,
@@ -168,9 +168,10 @@ class IndexController extends Controller
         $order       = Order::create($data);
         $payment_url = $order['payment_url'];
 
+        return redirect($payment_url)    ;
+
         //dd($time_used,$LockerOrder);
-        return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'payment_url' => $payment_url,
-    'payment_url_crypto'=>$payment_url_crypto]);
+        //return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'payment_url' => $payment_url, 'payment_url_crypto' => $payment_url_crypto]);
     }
 
     private function unlock_locker_data($order_id)
