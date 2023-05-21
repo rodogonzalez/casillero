@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '8a30abd5381b01ad1aeb91e094457f1b6e9ab00b',
+        'reference' => '92a1ee4ce4d813087fb2be1542e9df89518f04ef',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -517,7 +517,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '8a30abd5381b01ad1aeb91e094457f1b6e9ab00b',
+            'reference' => '92a1ee4ce4d813087fb2be1542e9df89518f04ef',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -683,9 +683,9 @@
             'dev_requirement' => false,
         ),
         'nikic/php-parser' => array(
-            'pretty_version' => 'v4.15.4',
-            'version' => '4.15.4.0',
-            'reference' => '6bb5176bc4af8bcb7d926f88718db9b96a2d4290',
+            'pretty_version' => 'v4.15.5',
+            'version' => '4.15.5.0',
+            'reference' => '11e2663a5bc9db5d714eedb4277ee300403b4a9e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nikic/php-parser',
             'aliases' => array(),
@@ -910,8 +910,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '3.0.0',
-                1 => '1.0|2.0|3.0',
+                0 => '1.0|2.0|3.0',
+                1 => '3.0.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1148,6 +1148,15 @@
             'reference' => 'd08b3ffc5870cce4a47a39f22174947b33c191ae',
             'type' => 'library',
             'install_path' => __DIR__ . '/../spatie/laravel-permission',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'srmklive/paypal' => array(
+            'pretty_version' => '3.0.21',
+            'version' => '3.0.21.0',
+            'reference' => '3a55d463f8d5935627c4eee15da702811a03c5ea',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../srmklive/paypal',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

@@ -116,7 +116,7 @@ class IndexController extends Controller
 
     public function show_open_locker_page()
     {
-        $signed_payment_link = URL::temporarySignedRoute('pay', now()->addMinutes(5), []);
+        $signed_payment_link = URL::temporarySignedRoute('pay', now()->addMinutes(env('TIME_EXPIRE_PAYMENT')), []);
 
         //URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
         return view('locker.order.open', ['signed_payment_link' => $signed_payment_link]);
@@ -134,7 +134,7 @@ class IndexController extends Controller
         } elseif ($time_used->minutes != 0) {
             $hours_billabled = $time_used->hours + 1;
         }
-//dd($hours_billabled , env('HOUR_RATE'));
+        //dd($hours_billabled , env('HOUR_RATE'));
         $amount = $hours_billabled * env('HOUR_RATE');
 
         $transaction['order_id']     = md5($LockerOrder->id);        // invoice number
@@ -151,10 +151,26 @@ class IndexController extends Controller
             'itemSubtotalAmount' => (FLOAT) $amount                  // USD
         ];
 
-        $payment_url = CoinPayment::generatelink($transaction);
+        $payment_url_crypto = CoinPayment::generatelink($transaction);
+
+        $data = [
+            'payment_method'       => 'paypal',
+            'payment_method_title' => 'Paypal',
+            'set_paid'             => false,            
+            'line_items' => [
+                [
+                    'product_id' => env('WOOCOMMERCE_PRODUCT_ID'),
+                    'quantity'   => $hours_billabled,
+                ]
+            ],
+        ];
+
+        $order       = Order::create($data);
+        $payment_url = $order['payment_url'];
 
         //dd($time_used,$LockerOrder);
-        return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'payment_url' => $payment_url]);
+        return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'payment_url' => $payment_url,
+    'payment_url_crypto'=>$payment_url_crypto]);
     }
 
     private function unlock_locker_data($order_id)
