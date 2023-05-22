@@ -111,7 +111,7 @@ class IndexController extends Controller
         $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
         $qrcode      = (new QRCode($options))->render(md5($LockerOrder->id));
 
-        return view('locker.order.started', ['device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
+        return view('locker.order.started', ['Order' => $LockerOrder, 'device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
     }
 
     public function show_open_locker_page()
@@ -168,7 +168,7 @@ class IndexController extends Controller
         $order       = Order::create($data);
         $payment_url = $order['payment_url'];
 
-        return redirect($payment_url)    ;
+        return redirect($payment_url);
 
         //dd($time_used,$LockerOrder);
         //return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'payment_url' => $payment_url, 'payment_url_crypto' => $payment_url_crypto]);
