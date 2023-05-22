@@ -30,7 +30,7 @@ class PaymentGenerationLink extends Command
    */
   public function handle()
   {
-    $this->throwPaypal();
+    $this->throwWoo();
   }
 
   public function throwPaypal()
@@ -60,9 +60,10 @@ class PaymentGenerationLink extends Command
 
   public function throwWoo()
   {
-    /*
+    
 
-    $paymentGateways = PaymentGateway::all()->toArray();
+    $paymentGateways = PaymentGateway::all();
+    dd( $paymentGateways);
     foreach($paymentGateways as $paymentGateway){
 
       if ($paymentGateway->enabled){
@@ -75,8 +76,7 @@ class PaymentGenerationLink extends Command
     // ver payment gateways
 
 
-    */
-    /*
+    
     $data = [
       'payment_method'       => 'paypal',
       'payment_method_title' => 'Paypal',
@@ -91,7 +91,6 @@ class PaymentGenerationLink extends Command
 
   $order = Order::create($data);
   dd($order["payment_url"]);
-*/
 
     //crear orden
     //dd($products,$paymentGateways);
