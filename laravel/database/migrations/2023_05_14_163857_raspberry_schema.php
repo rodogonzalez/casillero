@@ -28,6 +28,8 @@ return new class extends Migration {
         Schema::create('raspberry_device_queue', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('raspberry_device_id');
+
+            $table->bigInteger('locker_orders_id')->nullable();
             $table->string('gpio_port')->nullable();
             $table->enum("command", ['available', 'in-use', 'out-of-service'])->nullable();
             $table->boolean('executed');

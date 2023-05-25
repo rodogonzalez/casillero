@@ -20,22 +20,23 @@ class LockerOrder extends Model
         'woo_order_open',
         'woo_order_closed',
         'opening_paid_at',
-        'closening_paid_at'
+        'closening_paid_at',
+        'woo_order_id',
+        'locker_orders_id'
     ];
 
     private function differenceInHours($startdate, $enddate)
-    {      
-        $start_datetime = new DateTime($startdate); 
-        $diff = $start_datetime->diff(new DateTime(now()));                        
-        return (object) ['years'=>$diff->y,'months'=>$diff->m, 'days' => $diff->days,'hours' => $diff->h,'minutes' => $diff->i];
+    {
+        $start_datetime = new DateTime($startdate);
+        $diff           = $start_datetime->diff(new DateTime(now()));
+
+        return (object) ['years' => $diff->y, 'months' => $diff->m, 'days' => $diff->days, 'hours' => $diff->h, 'minutes' => $diff->i];
     }
 
-    public function getCurrentDurationAttribute()
-    {       
-
-        $time_used=  $this->differenceInHours($this->opening_paid_at, now());     
+    public function getDurationAttribute()
+    {
+        $time_used = $this->differenceInHours($this->opening_paid_at, now());
 
         return $time_used;
-                
     }
 }

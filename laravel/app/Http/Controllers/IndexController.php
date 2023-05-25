@@ -143,7 +143,7 @@ class IndexController extends Controller
         $hours_billabled = 0;
 
         $LockerOrder = LockerOrder::whereRaw("md5(id) =  '{$order_id}'")->first();
-        $time_used   = $LockerOrder->current_duration;
+        $time_used   = $LockerOrder->duration;
         if ($time_used->hours == 0) {
             $hours_billabled = 1;
         } elseif ($time_used->minutes != 0) {
@@ -195,9 +195,9 @@ class IndexController extends Controller
     {
         $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
         if (!is_null($LockerOrder->closening_paid_at)) {
-            abort(404);
+        //    abort(404);
 
-            return;
+          //  return;
         }
         $LockerOrder->closening_paid_at = now();
         $LockerOrder->save();
@@ -205,11 +205,10 @@ class IndexController extends Controller
             'raspberry_device_id' => $LockerOrder->raspberry_device_id,
             'gpio_port'           => $LockerOrder->gpio_port,
             'command'             => 'available',
-            'executed'            => 0
+            'executed'            => 0,
+            'locker_orders_id'    => $LockerOrder->id,
         ]);
     }
-
-
 
     public function unlock_paid_order($order_id)
     {
@@ -217,21 +216,22 @@ class IndexController extends Controller
         $LockerOrder = LockerOrder::whereRaw("woo_order_id =  '{$order_id}'")->first();
         //dd($LockerOrder);
         if (is_null($LockerOrder->closening_paid_at)) {
-         // 
+            //
             $LockerOrder->closening_paid_at = now();
             $LockerOrder->woo_order_closed  = now();
             $LockerOrder->save();
         }
-        
+
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $LockerOrder->raspberry_device_id,
             'gpio_port'           => $LockerOrder->gpio_port,
             'command'             => 'available',
+            'locker_orders_id'    => $LockerOrder->id,
             'executed'            => 0
         ]);
 
         //ret
-        $response = ['queue_event' => $ProcessQueue->id, 'status' => 'ok' , 'details' =>$LockerOrder->toArray()];
+        $response = ['queue_event' => $ProcessQueue->id, 'status' => 'ok', 'details' => $LockerOrder->toArray()];
 
         return response()
             ->json($response);

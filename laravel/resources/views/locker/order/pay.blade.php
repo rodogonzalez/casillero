@@ -6,7 +6,7 @@
     <div class="billing_fields">
         <div class="row">{{ env('HOUR_RATE') }} {{ env('COINPAYMENT_CURRENCY') }}: {{ __('messages.payment.title.hour_rate') }}</div>
         <div class="row">{{ __('messages.payment.title.hour_rate') }}</div><hr>
-        <div class="row">Total{{ __('messages.payment.title.time_used') }}} : {{ $Order->current_duration->hours }} horas {{ $Order->current_duration->minutes }} minutos</div>
+        <div class="row">Total{{ __('messages.payment.title.time_used') }}} : {{ $Order->duration->hours }} horas {{ $Order->duration->minutes }} minutos</div>
         <div class="row">Inicio: {{ $Order->opening_paid_at }}</div>
         <div class="row">Fin: {{ now() }}</div>
         <div>Total{{ __('messages.payment.title.billable') }}}: 

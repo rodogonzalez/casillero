@@ -37,13 +37,8 @@ class process_gpio_queue extends Command
 
     public function execute_db_connection(){
 
-        ini_set('max_execution_time', 25000);
-        $delay = 15;
-
-        try {
-            //$url = env('APP_URL') . '/device-feed/' . env('RASPBERRY_DEVICE_ID') . '?md=' . md5(now());
-            //$this->info('...........');
-            //$this->info('retrieving data...  ' );
+        
+        try {        
             
             $commands=\App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();
             $gpio        = new GPIO();
@@ -87,10 +82,10 @@ class process_gpio_queue extends Command
             }
 
             if (count($commands) == 0) {
-                $this->info('No commands queued!');
+                //$this->info('No commands queued!');
             }
 
-            $this->info('done -> ');
+            //$this->info('done -> ');
         } catch (Exception $e) {
             
             $this->error($e->getMessage());
@@ -188,6 +183,7 @@ class process_gpio_queue extends Command
                 $pin->setValue(PinInterface::VALUE_HIGH);
             }
         }
+        $this->info('watching ... ' );
     }
 
     public function handle()
@@ -200,7 +196,7 @@ class process_gpio_queue extends Command
         while (1 != 2) {
             $this->execute_db_connection();
 
-            $second_delay = 10;
+            $second_delay = 2;
             sleep($second_delay);
 /*
             $bar = $this->output->createProgressBar($second_delay);
