@@ -35,12 +35,10 @@ class process_gpio_queue extends Command
         parent::__construct();
     }
 
-    public function execute_db_connection(){
-
-        
-        try {        
-            
-            $commands=\App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();
+    public function execute_db_connection()
+    {
+        try {
+            $commands    = \App\Models\ProcessQueue::where('executed', 0)->where('raspberry_device_id', env('RASPBERRY_DEVICE_ID'))->get()->toArray();
             $gpio        = new GPIO();
             $reset_cache = false;
 
@@ -50,7 +48,7 @@ class process_gpio_queue extends Command
                     $pin = $gpio->getOutputPin($gpio_command['gpio_port']);
                     $pin->setValue(PinInterface::VALUE_LOW);
                 } else {
-                    $this->info('Skipping GPIO action');
+                    //                    $this->info('Skipping GPIO action');
                 }
                 $reset_cache = true;
             }
@@ -59,7 +57,7 @@ class process_gpio_queue extends Command
                 $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();
 
                 foreach ($commands as $gpio_command) {
-                    $this->info('Command on Port: ' . $gpio_command['gpio_port'] . ' ' . $gpio_command['command']);
+                    $this->info('Command on Port: ' . $gpio_command['gpio_port'] . ' ' . $gpio_command['command'] . ' when? -> ' . now());
 
                     if (env('GPIO_AVAILABLE')) {
                         $pin = $gpio->getOutputPin($gpio_command['gpio_port']);
@@ -78,7 +76,6 @@ class process_gpio_queue extends Command
 
                 $this_raspberry->last_ip = request()->ip();
                 $this_raspberry->save();
-
             }
 
             if (count($commands) == 0) {
@@ -87,15 +84,13 @@ class process_gpio_queue extends Command
 
             //$this->info('done -> ');
         } catch (Exception $e) {
-            
             $this->error($e->getMessage());
 
             return false;
         }
-
-
     }
-/*
+
+    /*
     private function every_raise()
     {
         ini_set('max_execution_time', 25000);
@@ -147,7 +142,7 @@ class process_gpio_queue extends Command
 
                 $url = env('APP_URL') . '/reset-device-feed/' . env('RASPBERRY_DEVICE_ID');
 
-                $this->info('resetting cache ' . $url);                
+                $this->info('resetting cache ' . $url);
                 Http::get($url, []);
             }
 
@@ -157,7 +152,7 @@ class process_gpio_queue extends Command
 
             $this->info('done -> ');
         } catch (Exception $e) {
-            
+
             $this->error($e->getMessage());
 
             return false;
@@ -166,7 +161,7 @@ class process_gpio_queue extends Command
 */
     private function turn_all_off()
     {
-        $this->info('init ... ' );
+        $this->info('init ... ');
         // Create a GPIO object
         $gpio = new GPIO();
 
@@ -175,7 +170,7 @@ class process_gpio_queue extends Command
                 $pin = $gpio->getOutputPin($x);
                 $pin->setValue(PinInterface::VALUE_LOW);
             }
-        }        
+        }
 
         for ($x = 0; $x <= 27; $x++) {
             if (env('GPIO_AVAILABLE')) {
@@ -183,7 +178,7 @@ class process_gpio_queue extends Command
                 $pin->setValue(PinInterface::VALUE_HIGH);
             }
         }
-        $this->info('watching ... ' );
+        $this->info('watching ... ');
     }
 
     public function handle()
@@ -198,7 +193,7 @@ class process_gpio_queue extends Command
 
             $second_delay = 2;
             sleep($second_delay);
-/*
+            /*
             $bar = $this->output->createProgressBar($second_delay);
 
             $bar->start();
