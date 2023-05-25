@@ -111,7 +111,22 @@ class IndexController extends Controller
         $unlock_link = URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
         $qrcode      = (new QRCode($options))->render(md5($LockerOrder->id));
 
-        return view('locker.order.started', ['Order' => $LockerOrder, 'device' => $RaspberryDevice, 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
+        $locker_ports = [
+            '4'  => '1',
+            '9'  => '2',
+            '10' => '3',
+            '11' => '4',
+            '13' => '5',
+            '16' => '6',
+            '20' => '7',
+            '21' => '8',
+            '23' => '9',
+            '24' => '10',
+            '26' => '11',
+            '27' => '12'
+        ];
+
+        return view('locker.order.started', ['Order' => $LockerOrder, 'device' => $RaspberryDevice, 'locker_number' => $locker_ports[$LockerOrder->gpio_port], 'order_id' => $LockerOrder->id, 'qr' => $qrcode, 'url' => $unlock_link]);
     }
 
     public function show_open_locker_page()
@@ -136,7 +151,7 @@ class IndexController extends Controller
         }
         //dd($hours_billabled , env('HOUR_RATE'));
         $amount = $hours_billabled * env('HOUR_RATE');
-
+        /*
         $transaction['order_id']     = md5($LockerOrder->id);        // invoice number
         $transaction['amountTotal']  = (FLOAT) $amount;
         $transaction['note']         = 'Locker Use';
@@ -152,7 +167,7 @@ class IndexController extends Controller
         ];
 
         $payment_url_crypto = CoinPayment::generatelink($transaction);
-
+*/
         $data = [
             'payment_method'       => 'paypal',
             'payment_method_title' => 'Paypal',
@@ -165,7 +180,9 @@ class IndexController extends Controller
             ],
         ];
 
-        $order       = Order::create($data);
+        $order                     = Order::create($data)->toArray();
+        $LockerOrder->woo_order_id = $order['id'];
+        $LockerOrder->save();
         $payment_url = $order['payment_url'];
 
         return redirect($payment_url);
@@ -177,7 +194,7 @@ class IndexController extends Controller
     private function unlock_locker_data($order_id)
     {
         $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
-        if ($LockerOrder->closening_paid_at != null) {
+        if (!is_null($LockerOrder->closening_paid_at)) {
             abort(404);
 
             return;
@@ -190,6 +207,35 @@ class IndexController extends Controller
             'command'             => 'available',
             'executed'            => 0
         ]);
+    }
+
+
+
+    public function unlock_paid_order($order_id)
+    {
+        $LockerOrder = LockerOrder::whereRaw("md5(woo_order_id) =  '{$order_id}'")->first();
+        //$LockerOrder = LockerOrder::whereRaw("woo_order_id =  '{$order_id}'")->first();
+        //dd($LockerOrder);
+        if (!is_null($LockerOrder->closening_paid_at)) {
+            abort(404);
+
+            return;
+        }
+        $LockerOrder->closening_paid_at = now();
+        $LockerOrder->woo_order_closed  = now();
+        $LockerOrder->save();
+        $ProcessQueue = ProcessQueue::create([
+            'raspberry_device_id' => $LockerOrder->raspberry_device_id,
+            'gpio_port'           => $LockerOrder->gpio_port,
+            'command'             => 'available',
+            'executed'            => 0
+        ]);
+
+        //ret
+        $response = ['queue_event' => $ProcessQueue->id, 'status' => 'ok'];
+
+        return response()
+            ->json($response);
     }
 
     public function unlock_order($order_id)

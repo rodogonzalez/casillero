@@ -39,6 +39,7 @@ return new class extends Migration {
             
             $table->bigInteger('raspberry_device_id');
             $table->string('gpio_port')->nullable();
+            $table->string('woo_order_id')->nullable();
             $table->string('woo_order_open')->nullable();
             $table->string('woo_order_closed')->nullable();
             $table->timestamp('opening_paid_at')->nullable();

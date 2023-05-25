@@ -2,6 +2,7 @@
 @section('content')
     <span>{{ $device->name }}</span>
     <h1>{{ __('messages.use_the_qr') }}</h1>
+    <h2>Locker #{{ $locker_number }}</h2>
     <input id="qr_code" type="text" readonly=readonly value="{{ md5($order_id) }}">
     <a href="#" onclick="copyToClipboard('{{ md5($order_id) }}'); return false;">Copiar</a>
     <hr>
