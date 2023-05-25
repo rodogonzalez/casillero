@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\URL;
 use Order;
+use Note;
 use Symfony\Component\Routing\Matcher\RedirectableUrlMatcherInterface;
 
 class IndexController extends Controller
@@ -183,6 +184,13 @@ class IndexController extends Controller
         $order                     = Order::create($data)->toArray();
         $LockerOrder->woo_order_id = $order['id'];
         $LockerOrder->save();
+
+        $data = [
+            'note' => $LockerOrder->toArray()
+        ];
+        
+        $note = Note::create($order['id'], $data);
+
         $payment_url = $order['payment_url'];
 
         return redirect($payment_url);
