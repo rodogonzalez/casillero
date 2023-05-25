@@ -213,8 +213,8 @@ class IndexController extends Controller
 
     public function unlock_paid_order($order_id)
     {
-        $LockerOrder = LockerOrder::whereRaw("md5(woo_order_id) =  '{$order_id}'")->first();
-        //$LockerOrder = LockerOrder::whereRaw("woo_order_id =  '{$order_id}'")->first();
+        //$LockerOrder = LockerOrder::whereRaw("md5(woo_order_id) =  '". md5($order_id) . "'")->first();
+        $LockerOrder = LockerOrder::whereRaw("woo_order_id =  '{$order_id}'")->first();
         //dd($LockerOrder);
         if (!is_null($LockerOrder->closening_paid_at)) {
             abort(404);
