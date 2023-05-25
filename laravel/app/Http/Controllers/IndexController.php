@@ -216,14 +216,13 @@ class IndexController extends Controller
         //$LockerOrder = LockerOrder::whereRaw("md5(woo_order_id) =  '". md5($order_id) . "'")->first();
         $LockerOrder = LockerOrder::whereRaw("woo_order_id =  '{$order_id}'")->first();
         //dd($LockerOrder);
-        if (!is_null($LockerOrder->closening_paid_at)) {
-            abort(404);
-
-            return;
+        if (is_null($LockerOrder->closening_paid_at)) {
+         // 
+            $LockerOrder->closening_paid_at = now();
+            $LockerOrder->woo_order_closed  = now();
+            $LockerOrder->save();
         }
-        $LockerOrder->closening_paid_at = now();
-        $LockerOrder->woo_order_closed  = now();
-        $LockerOrder->save();
+        
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $LockerOrder->raspberry_device_id,
             'gpio_port'           => $LockerOrder->gpio_port,
@@ -232,7 +231,7 @@ class IndexController extends Controller
         ]);
 
         //ret
-        $response = ['queue_event' => $ProcessQueue->id, 'status' => 'ok'];
+        $response = ['queue_event' => $ProcessQueue->id, 'status' => 'ok' , 'details' =>$LockerOrder->toArray()];
 
         return response()
             ->json($response);
