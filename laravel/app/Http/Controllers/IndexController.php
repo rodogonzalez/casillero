@@ -186,10 +186,10 @@ class IndexController extends Controller
         $LockerOrder->save();
 
         $data = [
-            'note' => $LockerOrder->toArray()
+            'note' => "Locker Order : {$LockerOrder->id}"
         ];
         
-        $note = Note::create($order['id'], $data);
+        $note = Order::createNote($order['id'], $data);
 
         $payment_url = $order['payment_url'];
 
