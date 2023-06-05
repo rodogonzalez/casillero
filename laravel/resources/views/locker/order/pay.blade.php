@@ -25,7 +25,7 @@
                     // Do stuff with the contents of the JSON file here
 
                 });
-            time_W = 5000*3;
+            time_W = 5000;
 
             setTimeout(check_payment_status, time_W);
         }
