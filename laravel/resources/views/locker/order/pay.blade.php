@@ -1,7 +1,6 @@
 @extends(backpack_view('blank'))
 
 @section('content')
-    {{ $callback }}
 
     <script>
         /*TODO: Move this code inside to a compiled JS file to be mixed */
