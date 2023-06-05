@@ -308,7 +308,7 @@ class IndexController extends Controller
     {
         // check signature valid just for 10 minutes
         if (!request()->hasValidSignature()) {
-            //abort(401);
+            abort(401);
         }
 
         //$LockerOrder = LockerOrder::whereRaw("md5(woo_order_id) =  '". md5($order_id) . "'")->first();

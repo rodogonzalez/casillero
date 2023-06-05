@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('request-locker/{device_id}', [IndexController::class, 'request_locker']);
 Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'])->name('start');
 Route::get('u/{order_id}', [IndexController::class, 'unlock_order'])->name('unlock');
-Route::get('woo/u/{order_id}', [IndexController::class, 'unlock_paid_order'])->name('unlock-woo');
+Route::get('woo/u/{order_id}', [IndexController::class, 'unlock_paid_order'])->name('unlock-woo')->middleware('signed');
 Route::get('open', [IndexController::class, 'show_open_locker_page']);
 Route::get('unlock', [IndexController::class, 'request_open_locker']);
 Route::post('pay', [IndexController::class, 'request_payment'])->name('pay');
