@@ -13,6 +13,7 @@
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('role') }}"><i class="nav-icon la la-id-badge"></i> <span>Roles</span></a></li>
         <li class="nav-item"><a class="nav-link" href="{{ backpack_url('permission') }}"><i class="nav-icon la la-key"></i> <span>Permissions</span></a></li>
     </ul>
+    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('locker-order-payment') }}"><i class="nav-icon la la-question"></i> Locker order payments</a></li>
 </li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('log') }}'><i class='nav-icon la la-terminal'></i> Logs</a></li>
 
@@ -31,3 +32,5 @@
     </script> 
 
 @endif
+
+

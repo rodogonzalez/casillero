@@ -18,5 +18,6 @@ class ProcessQueue extends Model
             'gpio_port',
             'command',
             'executed',             
+            'locker_orders_id'
         ];
 }

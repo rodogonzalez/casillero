@@ -18,15 +18,15 @@ Route::get('/', function () {
     return redirect('request-locker/' . env('RASPBERRY_DEVICE_ID'));
 });
 Route::get('request-locker/{device_id}', [IndexController::class, 'request_locker']);
-Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'])->name('start')->middleware('signed');;
-Route::get('u/{order_id}', [IndexController::class, 'unlock_order'])->name('unlock')->middleware('signed');
-
+Route::get('start-locker-request/{device_id}/{locker_id}', [IndexController::class, 'start_order'])->name('start');
+Route::get('u/{order_id}', [IndexController::class, 'unlock_order'])->name('unlock');
 Route::get('woo/u/{order_id}', [IndexController::class, 'unlock_paid_order'])->name('unlock-woo');
-
 Route::get('open', [IndexController::class, 'show_open_locker_page']);
 Route::get('unlock', [IndexController::class, 'request_open_locker']);
+Route::post('pay', [IndexController::class, 'request_payment'])->name('pay');
 
-Route::post('pay', [IndexController::class, 'request_payment'])->name('pay')->middleware('signed');;
+Route::get('blockbee-callback/{order_id}', [IndexController::class, 'blockbee_callback'])->name('blockbee_callback');
+Route::get('payment-status/{order_id}', [IndexController::class, 'payment_status'])->name('payment_status');
 //
 
 //Route::get('reset-device-feed/{device_id}', [IndexController::class, 'reset_device_feed'] );

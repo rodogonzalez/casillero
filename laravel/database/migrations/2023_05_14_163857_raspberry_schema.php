@@ -44,10 +44,22 @@ return new class extends Migration {
             $table->string('woo_order_id')->nullable();
             $table->string('woo_order_open')->nullable();
             $table->string('woo_order_closed')->nullable();
+            $table->string('crypto_wallet_address')->nullable();
+            $table->double('crypto_wallet_total_amount')->nullable();
             $table->timestamp('opening_paid_at')->nullable();
             $table->timestamp('closening_paid_at')->nullable();
             $table->timestamps();
 
+        });
+
+
+        Schema::create('locker_order_payments', function (Blueprint $table) {
+            $table->id();                       
+            $table->bigInteger('locker_orders_id');
+            $table->double('amount_received');
+            $table->string('transaction_id')->unique()->nullable();            
+            $table->text('payment_details')->nullable();            
+            $table->timestamps();
         });
     }
 

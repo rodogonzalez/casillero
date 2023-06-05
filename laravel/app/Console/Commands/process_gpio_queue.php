@@ -57,7 +57,7 @@ class process_gpio_queue extends Command
                 $this_raspberry = \App\Models\RaspberryDevice::where('id', env('RASPBERRY_DEVICE_ID'))->first();
 
                 foreach ($commands as $gpio_command) {
-                    $this->info('Command on Port: ' . $gpio_command['gpio_port'] . ' ' . $gpio_command['command'] . ' when? -> ' . now());
+                    $this->info('Order --->' . $gpio_command['locker_orders_id'] . 'Command on Port: ' . $gpio_command['gpio_port'] . ' ' . $gpio_command['command'] . ' when? -> ' . now());
 
                     if (env('GPIO_AVAILABLE')) {
                         $pin = $gpio->getOutputPin($gpio_command['gpio_port']);

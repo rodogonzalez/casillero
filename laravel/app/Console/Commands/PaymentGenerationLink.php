@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helpers\BlockBee;
 use Hexters\CoinPayment\CoinPayment;
 use Illuminate\Console\Command;
 use Order;
@@ -30,7 +31,7 @@ class PaymentGenerationLink extends Command
    */
   public function handle()
   {
-    $this->throwWoo();
+    $this->throwBeeBlock();
   }
 
   public function throwPaypal()
@@ -42,7 +43,7 @@ class PaymentGenerationLink extends Command
     $provider->setCurrency('USD');
 
     $data = json_decode('{
-      "intent": "' . env('PAYPAL_PAYMENT_ACTION'). '",
+      "intent": "' . env('PAYPAL_PAYMENT_ACTION') . '",
       "purchase_units": [
         {
           "amount": {
@@ -52,45 +53,66 @@ class PaymentGenerationLink extends Command
         }
       ]
   }', true);
- // dd($data);
+    // dd($data);
 
     $order = $provider->createOrder($data);
     dd($order);
   }
 
+  public function throwBeeBlock()
+  {
+    $coin            = 'ltc';
+    $my_address      = 'LZCqkNsp89vrD66Yw13QsBVL5ZnDomg5xw';
+    $callback_url    = 'https://casillero.telecripto.com';
+    $parameters      = ['order'=>2];
+    $blockbee_params = [];
+    $bb              = new BlockBee($coin, $my_address, $callback_url, $parameters, $blockbee_params, env('BLOCKBEE_API'));
+    $payment_address = $bb->get_address();
+    // LTC Addrr : LZCqkNsp89vrD66Yw13QsBVL5ZnDomg5xw
+    dd($payment_address);
+    
+  }
+
   public function throwWoo()
   {
-    
-
     $paymentGateways = PaymentGateway::all();
-    dd( $paymentGateways);
-    foreach($paymentGateways as $paymentGateway){
-
-      if ($paymentGateway->enabled){
-        dd($paymentGateway);
-        echo $paymentGateway->title;
+    //dd( $paymentGateways);
+    foreach ($paymentGateways as $paymentGateway) {
+      if ($paymentGateway->enabled) {
+        //dd($paymentGateway);
+        echo $paymentGateway->id . ' : ' . $paymentGateway->title . "\n";
       }
-
     }
-    $products = Product::all()->toArray();
+    //dd("payments");
+    //$products = Product::all()->toArray();
     // ver payment gateways
 
-
-    
     $data = [
-      'payment_method'       => 'paypal',
-      'payment_method_title' => 'Paypal',
+      'payment_method'       => 'cryptowoo',
+      'payment_method_title' => 'Crypto',
+      'address'              => '969 Market',
       'set_paid'             => false,
-      'line_items'           => [
-          [
-              'product_id' => 51,
-              'quantity'   => 2,
-          ]
+      'billing'              => [
+        'first_name' => 'Unknown',
+        'last_name'  => 'Unknown',
+        'address_1'  => '969 Market',
+        'address_2'  => '',
+        'city'       => 'San Francisco',
+        'state'      => 'San Jose',
+        'postcode'   => '10301',
+        'country'    => 'CR',
+        'email'      => 'rodogonzalez@msn.com',
       ],
-  ];
+      'line_items' => [
+        [
+          'product_id' => env('WOOCOMMERCE_PRODUCT_ID'),
+          'quantity'   => 3,
+        ]
+      ],
+    ];
 
-  $order = Order::create($data);
-  dd($order["payment_url"]);
+    $order = Order::create($data);
+    dd($order, $order['payment_url']);
 
     //crear orden
     //dd($products,$paymentGateways);

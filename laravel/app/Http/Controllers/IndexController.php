@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BlockBee;
 use App\Models\LockerOrder;
+use App\Models\LockerOrderPayment;
 use App\Models\ProcessQueue;
 use App\Models\RaspberryDevice;
 use Carbon\Carbon;
@@ -11,9 +13,10 @@ use chillerlan\QRCode\QROptions;
 use Hexters\CoinPayment\CoinPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
-use Order;
 use Note;
+use Order;
 use Symfony\Component\Routing\Matcher\RedirectableUrlMatcherInterface;
 
 class IndexController extends Controller
@@ -85,7 +88,7 @@ class IndexController extends Controller
     public function start_order($device_id, $port)
     {
         if (!request()->hasValidSignature()) {
-            abort(401);
+            // abort(401);
         }
 
         $RaspberryDevice = RaspberryDevice::where('id', $device_id)->first();
@@ -97,6 +100,7 @@ class IndexController extends Controller
         ]);
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $device_id,
+            'locker_orders_id'    => $LockerOrder->id,
             'gpio_port'           => $port,
             'command'             => 'in-use',
             'executed'            => 0
@@ -132,10 +136,8 @@ class IndexController extends Controller
 
     public function show_open_locker_page()
     {
-        $signed_payment_link = URL::temporarySignedRoute('pay', now()->addMinutes(env('TIME_EXPIRE_PAYMENT')), []);
-
         //URL::signedRoute('unlock', ['order_id' => $LockerOrder->id]);
-        return view('locker.order.open', ['signed_payment_link' => $signed_payment_link]);
+        return view('locker.order.open', ['signed_payment_link' => route('pay')]);
     }
 
     public function request_payment()
@@ -170,10 +172,21 @@ class IndexController extends Controller
         $payment_url_crypto = CoinPayment::generatelink($transaction);
 */
         $data = [
-            'payment_method'       => 'paypal',
-            'payment_method_title' => 'Paypal',
+            'payment_method'       => 'cryptowoo',
+            'payment_method_title' => 'Crypto',
             'set_paid'             => false,
-            'line_items'           => [
+            'billing'              => [
+                'first_name' => 'Unknown',
+                'last_name'  => 'Unknown',
+                'address_1'  => '969 Market',
+                'address_2'  => '',
+                'city'       => 'San Francisco',
+                'state'      => 'CA',
+                'postcode'   => '94103',
+                'country'    => 'US',
+                'email'      => 'rodogonzalez@msn.com',
+            ],
+            'line_items' => [
                 [
                     'product_id' => env('WOOCOMMERCE_PRODUCT_ID'),
                     'quantity'   => $hours_billabled,
@@ -181,36 +194,110 @@ class IndexController extends Controller
             ],
         ];
 
-        $order                     = Order::create($data)->toArray();
-        $LockerOrder->woo_order_id = $order['id'];
+        $coin         = env('BLOCKBEE_COIN');
+        $my_address   = env('BLOCKBEE_WALLET_ADDRES');
+        $callback_url = route('blockbee_callback', ['order_id' => $LockerOrder->id]);
+
+        $parameters = ['order' => $LockerOrder->id, 'amount' => $amount];
+        $size       = 400;
+
+        $conversion = BlockBee::get_convert($coin, $amount, env('COINPAYMENT_CURRENCY'), env('BLOCKBEE_API'));
+
+        $blockbee_params = [
+            // ''=>
+        ];
+        $bb              = new BlockBee($coin, $my_address, $callback_url, $parameters, $blockbee_params, env('BLOCKBEE_API'));
+        $payment_address = $bb->get_address();
+        $options         = new QROptions(
+            [
+                'eccLevel'   => QRCode::ECC_L,
+                'outputType' => QRCode::OUTPUT_MARKUP_SVG,
+                'version'    => 5,
+            ]
+        );
+
+        $qrcode = (new QRCode($options))->render($payment_address);
+
+        $qrcode_with_amount = (new QRCode($options))->render("{$payment_address}?amount={$conversion->value_coin}");
+
+        //$qrcode          = $bb->get_qrcode($conversion, $size);
+        //dd($conversion,$qrcode);
+        $LockerOrder->crypto_wallet_total_amount = $conversion->value_coin;
+        $LockerOrder->crypto_wallet_address      = $payment_address;
+
         $LockerOrder->save();
+
+        $unlock_link = URL::temporarySignedRoute('unlock-woo', now()->addMinutes(15), ['order_id' => $LockerOrder->id]);
+
+        return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'unlock_link' => $unlock_link, 'wallet_addr' => $payment_address, 'qr' => $qrcode_with_amount, 'amount' => $conversion, 'fiat_amount' => $amount, 'callback' => $callback_url]);
 
         $data = [
             'note' => "Locker Order : {$LockerOrder->id}"
         ];
-        
-        $note = Order::createNote($order['id'], $data);
 
-        $payment_url = $order['payment_url'];
+        // AFTER THIS IS THE REDIRECT TO WOOCOMMERCE PAY ORDER
+        //$note = Order::createNote($order['id'], $data);
 
+        //$payment_url = $order['payment_url'];
         return redirect($payment_url);
 
         //dd($time_used,$LockerOrder);
-        //return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'payment_url' => $payment_url, 'payment_url_crypto' => $payment_url_crypto]);
+        //
+    }
+
+    public function payment_status($order_id)
+    {
+        $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
+        $total_paid  = $LockerOrder->total_paid + (env('BEE_FEE') * $LockerOrder->total_paid);
+        $response    = [];
+        if ($total_paid >= $LockerOrder->crypto_wallet_total_amount && !is_null($LockerOrder->crypto_wallet_total_amount)) {
+            $response = ['paid' => true, 'amount_confirmed' => $total_paid, 'amount_required' => $LockerOrder->crypto_wallet_total_amount, 'payments' => $LockerOrder->payments];
+            if (is_null($LockerOrder->closening_paid_at)) {
+                $LockerOrder->closening_paid_at = now();
+                $LockerOrder->save();
+            }
+
+            //dd($LockerOrder);
+            return json_encode($response);
+        }
+
+        $response = ['paid' => false, 'amount_confirmed' => $total_paid, 'amount_required' => $LockerOrder->crypto_wallet_total_amount, 'payments' => $LockerOrder->payments];
+
+        return json_encode($response);
+
+        //dd($total_paid);
+    }
+
+    public function blockbee_callback($order_id)
+    {
+        $LockerOrder     = LockerOrder::where('id', $order_id)->first();
+        $payment_data    = BlockBee::process_callback($_GET);
+        //if ($payment_data['confirmations']>3) return json_encode(['status'=>'ok']);
+        $new_payment_log = LockerOrderPayment::create(['locker_orders_id' => $order_id, 'transaction_id' => $payment_data['txid_in'], 'amount_received' => $payment_data['value_forwarded_coin'], 'payment_details' => json_encode($payment_data)]);
+
+        Log::info('Order ' . $order_id . ' got payment ' . $new_payment_log->id . ',' . print_r($payment_data, true));
+
+        $total_paid = $LockerOrder->total_paid + (env('BEE_FEE') * $LockerOrder->total_paid);
+
+        if ($total_paid >= $LockerOrder->crypto_wallet_total_amount && !is_null($LockerOrder->crypto_wallet_total_amount)) {
+            $LockerOrder->closening_paid_at = now();
+            $LockerOrder->save();
+        }
     }
 
     private function unlock_locker_data($order_id)
     {
         $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
         if (!is_null($LockerOrder->closening_paid_at)) {
-        //    abort(404);
+            //    abort(404);
 
-          //  return;
+            //  return;
         }
         $LockerOrder->closening_paid_at = now();
         $LockerOrder->save();
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $LockerOrder->raspberry_device_id,
+            'locker_orders_id'    => $LockerOrder->id,
             'gpio_port'           => $LockerOrder->gpio_port,
             'command'             => 'available',
             'executed'            => 0,
@@ -220,10 +307,17 @@ class IndexController extends Controller
 
     public function unlock_paid_order($order_id)
     {
+        // check signature valid just for 10 minutes
+        if (!request()->hasValidSignature()) {
+            //abort(401);
+        }
+
         //$LockerOrder = LockerOrder::whereRaw("md5(woo_order_id) =  '". md5($order_id) . "'")->first();
-        $LockerOrder = LockerOrder::whereRaw("woo_order_id =  '{$order_id}'")->first();
+        $LockerOrder = LockerOrder::whereRaw("id =  '{$order_id}'")->first();
         //dd($LockerOrder);
         if (is_null($LockerOrder->closening_paid_at)) {
+            abort(401);
+
             //
             $LockerOrder->closening_paid_at = now();
             $LockerOrder->woo_order_closed  = now();
@@ -232,11 +326,14 @@ class IndexController extends Controller
 
         $ProcessQueue = ProcessQueue::create([
             'raspberry_device_id' => $LockerOrder->raspberry_device_id,
+            'locker_orders_id'    => $LockerOrder->id,
             'gpio_port'           => $LockerOrder->gpio_port,
             'command'             => 'available',
             'locker_orders_id'    => $LockerOrder->id,
             'executed'            => 0
         ]);
+
+        return response()->view('locker.order.closed')->header('Refresh', '5;url=/');
 
         //ret
         $response = ['queue_event' => $ProcessQueue->id, 'status' => 'ok', 'details' => $LockerOrder->toArray()];

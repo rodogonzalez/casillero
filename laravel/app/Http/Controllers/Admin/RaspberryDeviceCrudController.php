@@ -59,8 +59,9 @@ class RaspberryDeviceCrudController extends CrudController
             $currentEntry= $this->crud->getCurrentEntry();
             for ($x = 0; $x <= 27; $x++) {
                 $currentEntry->{"gpio_{$x}_status"}= 'available';
-                $currentEntry->save();
+                
             }
+            $currentEntry->save();
         }
         $this->crud->setOperationSetting('tabsEnabled', true);
         $this->crud->addColumn([

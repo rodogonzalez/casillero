@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '220a36e8ce3847076a05830c41a035f118be338f',
+        'reference' => '74761d776580b3f61e4cde56fe762e0464e0ee0c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -505,6 +505,15 @@
                 0 => '*',
             ),
         ),
+        'laminas/laminas-diactoros' => array(
+            'pretty_version' => '3.0.0',
+            'version' => '3.0.0.0',
+            'reference' => '2515f4134258b1b418c23cb86606b8a09dd01aea',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laminas/laminas-diactoros',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'laravel/framework' => array(
             'pretty_version' => 'v10.11.0',
             'version' => '10.11.0.0',
@@ -517,9 +526,18 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '220a36e8ce3847076a05830c41a035f118be338f',
+            'reference' => '74761d776580b3f61e4cde56fe762e0464e0ee0c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'laravel/octane' => array(
+            'pretty_version' => 'v2.0.1',
+            'version' => '2.0.1.0',
+            'reference' => '0a3523e6b785a102f7c2923652e1adca9b88845e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/octane',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -881,6 +899,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+                1 => '^1.1 || ^2.0',
             ),
         ),
         'psr/http-message' => array(
@@ -896,6 +915,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+                1 => '^1.1 || ^2.0',
             ),
         ),
         'psr/log' => array(
@@ -910,8 +930,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1343,6 +1363,15 @@
             'reference' => 'b34cdbc9c5e75d45a3703e63a48ad07aafa8bf2e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/process',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/psr-http-message-bridge' => array(
+            'pretty_version' => 'v2.2.0',
+            'version' => '2.2.0.0',
+            'reference' => '28a732c05bbad801304ad5a5c674cf2970508993',
+            'type' => 'symfony-bridge',
+            'install_path' => __DIR__ . '/../symfony/psr-http-message-bridge',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         // crear roles
-        // admin , client , 
+        // admin , client ,
 
         \App\Models\User::factory()->create([
             'name'     => 'Admin',
@@ -23,8 +23,13 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',  // password
         ]);
 
-        
-
-        
+        $newRecord = \App\Models\RaspberryDevice::create([
+            'name'  => 'Demo Device',
+            'model' => 'Raspberry PI 3B+',
+        ]);
+        for ($x = 0; $x <= 27; $x++) {
+            $newRecord->{"gpio_{$x}_status"} = 'available';
+        }
+        $newRecord->save();
     }
 }
