@@ -82,6 +82,7 @@
             </div>
 
             <div class="col-4">
+                <h1>Locker #: {{ $locker_number }}</h1>
 
                 <a id="payment_thanks" href="{{ $unlock_link }}" style="display:none;">HAGA CLICK PARA ABRIR EL LOCKER! <br>ABRIR</a>
 
