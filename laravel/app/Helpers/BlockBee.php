@@ -6,7 +6,7 @@ use Exception;
 
 class BlockBee
 {
-    private static $base_url = 'https://api.blockbee.io';
+    private static $base_url = 'https://api.cryptapi.io';
     private $valid_coins     = [];
     private $own_address     = null;
     private $payment_address = null;
