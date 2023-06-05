@@ -26,7 +26,7 @@
                         <span class="note">
                         <?php 
 
-                            $locker_order_linked = App\Models\LockerOrder::whereRaw("raspberry_device_id={$device->id} and gpio_port={$locker_port}")->first();                            
+                            $locker_order_linked = App\Models\LockerOrder::whereRaw("closening_paid_at is null and  raspberry_device_id={$device->id} and gpio_port={$locker_port}")->first();                            
                             if (!is_null($locker_order_linked)){
                                 echo "Unlock code : " . md5($locker_order_linked->id);
                             }                        
