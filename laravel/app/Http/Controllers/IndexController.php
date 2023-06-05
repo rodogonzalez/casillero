@@ -154,23 +154,7 @@ class IndexController extends Controller
         }
         //dd($hours_billabled , env('HOUR_RATE'));
         $amount = $hours_billabled * env('HOUR_RATE');
-        /*
-        $transaction['order_id']     = md5($LockerOrder->id);        // invoice number
-        $transaction['amountTotal']  = (FLOAT) $amount;
-        $transaction['note']         = 'Locker Use';
-        $transaction['buyer_name']   = 'self';
-        $transaction['buyer_email']  = 'buyer@pagacripto.com';
-        $transaction['redirect_url'] = url('/back_to_tarnsaction');  // When Transaction was comleted
-        $transaction['cancel_url']   = url('/back_to_tarnsaction');  // When user click cancel link
-        $transaction['items'][]      = [
-            'itemDescription'    => 'Time',
-            'itemPrice'          => (FLOAT) $amount,                 // USD
-            'itemQty'            => (INT) 1,
-            'itemSubtotalAmount' => (FLOAT) $amount                  // USD
-        ];
 
-        $payment_url_crypto = CoinPayment::generatelink($transaction);
-*/
         $data = [
             'payment_method'       => 'cryptowoo',
             'payment_method_title' => 'Crypto',
@@ -229,7 +213,22 @@ class IndexController extends Controller
 
         $unlock_link = URL::temporarySignedRoute('unlock-woo', now()->addMinutes(15), ['order_id' => $LockerOrder->id]);
 
-        return view('locker.order.pay', ['Order' => $LockerOrder, 'time_billabled' => $hours_billabled, 'unlock_link' => $unlock_link, 'wallet_addr' => $payment_address, 'qr' => $qrcode_with_amount, 'amount' => $conversion, 'fiat_amount' => $amount, 'callback' => $callback_url]);
+        $locker_ports = [
+            '4'  => '1',
+            '9'  => '2',
+            '10' => '3',
+            '11' => '4',
+            '13' => '5',
+            '16' => '6',
+            '20' => '7',
+            '21' => '8',
+            '23' => '9',
+            '24' => '10',
+            '26' => '11',
+            '27' => '12'
+        ];
+
+        return view('locker.order.pay', ['Order' => $LockerOrder, 'locker_number' => $locker_ports[$LockerOrder->gpio_port], 'time_billabled' => $hours_billabled, 'unlock_link' => $unlock_link, 'wallet_addr' => $payment_address, 'qr' => $qrcode_with_amount, 'amount' => $conversion, 'fiat_amount' => $amount, 'callback' => $callback_url]);
 
         $data = [
             'note' => "Locker Order : {$LockerOrder->id}"
