@@ -146,6 +146,9 @@ class IndexController extends Controller
         $hours_billabled = 0;
 
         $LockerOrder = LockerOrder::whereRaw("md5(id) =  '{$order_id}'")->first();
+        if (!is_null($LockerOrder->closening_paid_at)){
+            abort(401);
+        }
         $time_used   = $LockerOrder->duration;
         if ($time_used->hours == 0) {
             $hours_billabled = 1;
@@ -154,7 +157,7 @@ class IndexController extends Controller
         }
         //dd($hours_billabled , env('HOUR_RATE'));
         $amount = $hours_billabled * env('HOUR_RATE');
-
+/*
         $data = [
             'payment_method'       => 'cryptowoo',
             'payment_method_title' => 'Crypto',
@@ -177,7 +180,7 @@ class IndexController extends Controller
                 ]
             ],
         ];
-
+*/
         $coin         = env('BLOCKBEE_COIN');
         $my_address   = env('BLOCKBEE_WALLET_ADDRES');
         $callback_url = route('blockbee_callback', ['order_id' => $LockerOrder->id]);
