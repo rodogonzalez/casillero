@@ -48,7 +48,7 @@ class IndexController extends Controller
             $ports_availables[]    = [$locker_port => ['caption' => $label, 'status' => $locker_current_status, 'link' => $unlock_link]];
         }
 
-        return view('device_user_view', ['device' => $RaspberryDevice, 'lockers' => $ports_availables]);
+        return view('device_user_view', ['device' => $RaspberryDevice, 'lockers' => $ports_availables])->header('Refresh', '5');;
 
         //dd($RaspberryDevice);
         /*
