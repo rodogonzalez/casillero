@@ -47,8 +47,8 @@ class IndexController extends Controller
             $unlock_link           = URL::signedRoute('start', ['device_id' => $device_id, 'locker_id' => $locker_port]);
             $ports_availables[]    = [$locker_port => ['caption' => $label, 'status' => $locker_current_status, 'link' => $unlock_link]];
         }
-
-        return view('device_user_view', ['device' => $RaspberryDevice, 'lockers' => $ports_availables])->header('Refresh', '5');;
+        
+        return response()->view('device_user_view', ['device' => $RaspberryDevice, 'lockers' => $ports_availables])->header('Refresh', '5');
 
         //dd($RaspberryDevice);
         /*
